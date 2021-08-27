@@ -1,0 +1,2 @@
+void testIntegerStack();
+void testStringStack();
