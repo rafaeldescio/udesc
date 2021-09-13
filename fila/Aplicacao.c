@@ -1,5 +1,5 @@
 #include "Fila_publico.h"
-#include "Pilha_publico.h"
+#include "pilha_publico.h"
 #include "Aplicacao_privado.h"
 
 struct TestStruct2 {
@@ -174,89 +174,75 @@ void testIntegerQueue2(){
   destroyQueue(queue_of_ints);
 }
 
-void testStringStack() {
-  printf("Testando Pilha de Strings\n");
-  // Cria um array de strings
-  char *arr_chars[] = {"abc", "def", "ghi", "jlk", "mno"};
-  int num_elems = sizeof(arr_chars) / sizeof(arr_chars[0]);
+void testStackQueue() {
+  pPilha P, P2;
+  char* arr_chars1[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+  char* arr_chars2[] = {"11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+  int num_elems = 10;
+  int *arg, *arg2;
+  int ret=0;
+  int valor=0;
+  arg = (int*) malloc(sizeof(char*)*num_elems);
 
-  // Cria um nova pilha para inteiros
-  Stack stack_of_chars = init(sizeof(arr_chars[0]), 2);
-
-  // Adiciona os elementos do array na pilha
-  for (int i = 0; i < num_elems; i++) {
-    printf("Pilha esta cheia: %s \n", isFull(stack_of_chars) ? "Sim" : "Não");
-    if(!isFull(stack_of_chars)){
-      printf("Adicionando: %s \n", *(arr_chars + i));
-      push(stack_of_chars, arr_chars + i);
-    } else {
-       printf("Descartando: %s \n", *(arr_chars + i));
-    }
+  // Crie uma fila circular c/ 3 posições
+  Queue queue_of_pilhas = initQueue(3);
+  // Crie 1 pilha c/ 10 posições
+  criapilha(&P, num_elems, sizeof(int));
+  // Empilhe (0,1, ... 8)
+  for (int i=0; i < num_elems; i++) {
+    arg[i] = atoi(arr_chars1[i]);
+    ret = empilha(P,&arg[i]);
+    printf ("(%d)", arg[i]);
   }
-  printf("\n");
-  printf("\nImprimindo a pilha:\n");
-  printStack(printString, stack_of_chars);
-  printf("\n\n");
-  printf("Testando Pilha de Inteiros\n");
-  // Cria um array de inteiros
-  int arr_int[] = {11, 222, 33, 44, 55};
-  int num_ints = sizeof(arr_int) / sizeof(arr_int[0]);
-
-  // Cria um nova pilha para inteiros
-  Stack stack_of_ints = init(sizeof(arr_int[0]), num_ints);
-
-  // Adiciona os elementos do array na pilha
-  for (int i = 0; i < num_ints; i++) {
-    printf("Adicionando: %d \n",  *(arr_int + i));
-    push(stack_of_ints, arr_int + i);
+  printf ("\n");
+  // enfileire a pilha
+  enQueue(queue_of_pilhas, &P, sizeof(P));
+  // Crie 1 pilha c/ 10 posições
+  criapilha(&P2, num_elems, sizeof(int));
+  arg2 = (int*) malloc(sizeof(char*)*num_elems);
+  // Empilhe (0,1, ... 8)
+  for (int i=0; i < num_elems; i++) {
+    arg2[i] = atoi(arr_chars2[i]);
+    ret = empilha(P,&arg2[i]);
+    printf ("(%d)", arg2[i]);
   }
-  printf("\nImprimindo a pilha:\n");
-  printStack(printInt, stack_of_ints);
-  printf("\n\n");
-  printf("\nCriando uma fila de pilhas:\n");
-  printf("\n\n");
-  // Adiciona os elementos em uma fila
-  Queue queue_of_stacks = initQueue(2);
-  printf("Adicionando pilha de chars\n");
-  enQueue(queue_of_stacks, &stack_of_chars, sizeof(Stack *));
-  printf("Adicionando pilha de ints\n");
-  enQueue(queue_of_stacks, &stack_of_ints, sizeof(Stack *));
-  printf("Removendo uma fila de ints\n");
-  Stack *removed_stack = deQueue(queue_of_stacks);
-  printf("Imprimindo a pilha de ints\n");
-  printStack(printString, *removed_stack);
-  free(removed_stack);
-  printf("Removendo uma fila de chars \n");
-  removed_stack = deQueue(queue_of_stacks);
-  printf("Imprimindo a pilha de chars\n");
-  printStack(printInt, *removed_stack);
-  free(removed_stack);
-  printf("Fila esta vazia: %s \n", isEmptyQueue(queue_of_stacks) ? "Sim" : "Não");
-  destroyQueue(queue_of_stacks);
-
-  printf("\nRemovendo da Pilha de Inteiros: \n");
-  // Remove os elementos da pilha
-  int *removed_int;
-  while ((removed_int = pop(stack_of_ints)) != NULL) {
-    printf("Removido: %d \n", *removed_int);
+  printf ("\n");
+  // enfileire a pilha
+  enQueue(queue_of_pilhas, &P2, sizeof(P2));
+  // Desempilhe 4 elementos
+  for (int i=0; i < 4;i++) {   
+    ret = desempilha(P,&valor);
+    if (!ret)
+    printf ("ERRO desempilha ...\n");
+    else
+    printf ("OK desempilha %d...\n", valor);
   }
-  printf("Pilha esta vazia: %s \n", isEmpty(stack_of_ints) ? "Sim" : "Não");
-  // Destroi a pilha
-  destroy(stack_of_ints);
-  printf("Removendo da Pilha de Strings: \n");
-  // Remove os elementos da pilha
-  char **removed_char;
-  while ((removed_char = pop(stack_of_chars)) != NULL) {
-    printf("Removido: %s \n", *removed_char);
-  }
-  printf("Pilha esta vazia: %s \n", isEmpty(stack_of_chars) ? "Sim" : "Não");
-  // Destroi a pilha
-  destroy(stack_of_chars);
+  // desenfileire a pilha
+  pPilha *retP = deQueue(queue_of_pilhas);
+  // Imprima o topo da pilha retornada
+  ret = topo(*retP,&valor);
+  // Desenfileire a pilha
+  if (!ret)
+    printf ("ERRO topo ...\n");
+  else
+    printf ("OK topo %d\n", valor);
+  // Destrua a pilha
+  ret = destroipilha(&P);
+  if (!ret) printf ("ERRO destroi...\n");
+  // Destrua a fila
+  destroyQueue(queue_of_pilhas);
+  free(arg);
+  free(arg2);
+  free(retP);
+  // Destrua a pilha 2
+  ret = destroipilha(&P2);
 }
 
 int main(int argc, char* argv[]) {
   printf("---------------------------------------\n");\
-  testStringStack();
+  testStackQueue();
+  printf("\n\n");
+  printf("---------------------------------------\n");\
   testStruckQueue();
   // ------------------------------------------------------
   printf("\n\n");

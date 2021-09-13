@@ -107,9 +107,13 @@ void *peek(Queue s, size_t position) {
 }
 
 void destroyQueue(Queue s) {
+  for(int i = 0; i < s->max_elements; i++){
+    void* p = deQueue(s);
+    free(p);
+  }
   free(s->storage);
   s->front = -1;
-  s->rear = 0;
+  s->rear = -1;
   free(s);
 }
 
