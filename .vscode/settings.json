@@ -2,7 +2,8 @@
   "files.associations": {
     "tda_pilha_interface.h": "c",
     "pilha_publico.h": "c",
-    "stdlib.h": "c",
-    "aplicacao_privado.h": "c"
+    "aplicacao_privado.h": "c",
+    "fila_privado.h": "c",
+    "fila_publico.h": "c",
   }
 }
