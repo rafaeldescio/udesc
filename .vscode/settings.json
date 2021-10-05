@@ -5,5 +5,12 @@
     "aplicacao_privado.h": "c",
     "fila_privado.h": "c",
     "fila_publico.h": "c",
+    "compare": "cpp",
+    "type_traits": "cpp",
+    "typeinfo": "cpp",
+    "concepts": "c",
+    "cmath": "c",
+    "limits": "c",
+    "new": "c"
   }
 }
