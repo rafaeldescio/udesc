@@ -1,17 +1,19 @@
 {
   "version": "2.0.0",
   "tasks": [
+    
     {
-      "label": "build",
+      "label": "build queue",
       "command": "gcc",
       "args": [
         "-I${fileDirname}",
         "-Wall",
         // "${file}",
         "Aplicacao.c",
-        "Pilha.c",
+        "FEC.c",
+        "pilha.o",
         "-o",
-        "Aplicacao"
+        "aplicacao"
       ],
       "problemMatcher": {
         "owner": "cpp",

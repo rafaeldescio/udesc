@@ -1,16 +1,19 @@
-#include "Fila_publico.h"
-#include "pilha_publico.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
-#if __STDC__!=1 || __STDC_VERSION__ < 201112L
-#error "Versão do compilador não suporta _Generic"
-#endif
+#include <string.h>
+#include "FEC.h"
+#include "pilha_publico.h"
+
 #ifndef _FILA_PRIVADO_H
 #define _FILA_PRIVADO_H
 
 #define FAILURE 0
 #define SUCCESS 1
+
+// #define ENABLE_DEBUG_LOG 1   // disable DEBUG_LOG
+
 enum t_typename {
-    TYPENAME_BOOL,
     TYPENAME_UNSIGNED_CHAR,
     TYPENAME_CHAR,
     TYPENAME_SIGNED_CHAR,
@@ -26,14 +29,14 @@ enum t_typename {
     TYPENAME_DOUBLE,
     TYPENAME_LONG_DOUBLE,
     TYPENAME_POINTER_TO_CHAR,
-    TYPENAME_POINTER_TO_LONG,
     TYPENAME_POINTER_TO_VOID,
     TYPENAME_POINTER_TO_INT,
     TYPENAME_CUSTOM_STACK,
     TYPENAME_UNKNOWN
 };
+typedef enum t_typename TypeName ;
 
-// #define ENABLE_DEBUG_LOG    // disable DEBUG_LOG
+
 struct queue_element {
   // Conteudo do elemento armazenado
   void *element;
@@ -55,8 +58,10 @@ struct queue {
 
 };
 
-/* Adiciona um novo elemento na fila. */
 int enQueueOriginal(Queue s, void *element, size_t element_size, TypeName typename);
+int deQueueOriginal(Queue s, void* return_element, TypeName typename);
+int _destroyNextElement(Queue s);
+void _destroyCustom(Queue s );
 
 #define TYPE_NAME(X) _Generic((X),                           \
     unsigned char: TYPENAME_UNSIGNED_CHAR,                   \
@@ -76,31 +81,8 @@ int enQueueOriginal(Queue s, void *element, size_t element_size, TypeName typena
     char *: TYPENAME_POINTER_TO_CHAR,                        \
     void *: TYPENAME_POINTER_TO_VOID,                        \
     int *: TYPENAME_POINTER_TO_INT,                          \
-    pPilha: TYPENAME_CUSTOM_STACK,                          \
+    pPilha: TYPENAME_CUSTOM_STACK,                           \
     default: TYPENAME_UNKNOWN)
 
-int enQueueDouble(Queue s, double element);
-int enQueueInt(Queue s, int element);
-int enQueueChar(Queue s, char element);
-int enQueueCharVector(Queue s, char *element);
-int enQueuePPilha(Queue s, pPilha element);
-int enQueueInvalid(Queue s, void *X);
-
-#define privateEnQueue(q, X) _Generic((X),             \
-    double: enQueueDouble,                             \
-    int: enQueueInt,                                   \
-    char: enQueueChar,                                 \
-    char *: enQueueCharVector,                         \
-    pPilha: enQueuePPilha,                             \
-    default: enQueueInvalid)(q, X)
-
-int deQueueOriginal(Queue s, void* return_element);
-int deQueueInvalid(Queue s, char* a);
-double deQueueDouble(Queue s, double a);
-int deQueueInt(Queue s, int a);
-char deQueueChar(Queue s, char a);
-char* deQueueCharVector(Queue s, char* element);
-int _privateDeQueue(Queue s);
-void* __privateDeQueueTyped(Queue s, TypeName t);
 
 #endif
