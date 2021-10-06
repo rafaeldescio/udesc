@@ -35,7 +35,6 @@ struct List {
 
 pElement newElement(void *val, pElement previous, pElement next,  size_t typesize, TypeName typename);
 pElement peekElementAtPosition(pList s, size_t position);
-int getTypeAtList(pList s, size_t position);
 void destroyElement(pElement el);
 
 #endif
