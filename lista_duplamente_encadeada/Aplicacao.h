@@ -6,4 +6,5 @@
 #include "LDDE.h"
 #ifndef _APLICACAO_PUBLICO_H
 #define _APLICACAO_PUBLICO_H
+typedef struct TestStruct * pTestStruct;
 #endif

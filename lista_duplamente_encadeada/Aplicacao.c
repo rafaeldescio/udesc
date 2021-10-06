@@ -1,5 +1,5 @@
 #include "Aplicacao.h"
-typedef struct TestStruct * pTestStruct;
+
 struct TestStruct {
   char* test_data;
 } ;
@@ -281,7 +281,7 @@ void testGenericList(){
   if(retpPilhaRet != NULL){
 
     for (int i=0; i < 5; i++) {
-      ret = topo(retpPilhaRet, &arr_of_int);
+      ret = topo(retpPilhaRet, &valor);
       if (!ret)
       printf ("ERRO topo ...\n");
       else
