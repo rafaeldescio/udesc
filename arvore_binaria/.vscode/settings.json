@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "abb_privado.h": "c",
+        "abb.h": "c",
+        "aplicacao.h": "c",
+        "stdio.h": "c",
+        "stdbool.h": "c",
+        "stdlib.h": "c"
+    }
+}

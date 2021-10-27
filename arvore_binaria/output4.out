@@ -1,0 +1,24 @@
+Número de inserções: 5
+0: Inserido com sucesso [10]
+1: Inserido com sucesso [20]
+2: Inserido com sucesso [23]
+3: Inserido com sucesso [1]
+4: Inserido com sucesso [2]
+
+Impressao dos elementos em ordem: 1 2 10 20 23 
+
+Impressao dos elementos em pre-ordem: 10 1 2 20 23 
+
+Impressao dos elementos em pos-ordem: 2 1 23 20 10 
+
+Número de buscas: 3
+Buscado com sucesso [20]
+Buscado com sucesso [23]
+Buscado com sucesso [10]
+
+Número de remoções: 5
+Removido com sucesso [2]
+Removido com sucesso [1]
+Removido com sucesso [20]
+Removido com sucesso [10]
+Removido com sucesso [23]
