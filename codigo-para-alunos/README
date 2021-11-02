@@ -1,0 +1,2 @@
+p/ compilar: make clean; make
+p/ executar: ./aplicacao < inputfile.in > outputfile.out
