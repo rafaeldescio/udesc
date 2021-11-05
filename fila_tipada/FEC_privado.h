@@ -13,30 +13,6 @@
 
 // #define ENABLE_DEBUG_LOG 1   // disable DEBUG_LOG
 
-enum t_typename {
-    TYPENAME_UNSIGNED_CHAR,
-    TYPENAME_CHAR,
-    TYPENAME_SIGNED_CHAR,
-    TYPENAME_SHORT_INT,
-    TYPENAME_UNSIGNED_SHORT_INT,
-    TYPENAME_INT,
-    TYPENAME_UNSIGNED_INT,
-    TYPENAME_LONG_INT,
-    TYPENAME_UNSIGNED_LONG_INT,
-    TYPENAME_LONG_LONG_INT,
-    TYPENAME_UNSIGNED_LONG_LONG_INT,
-    TYPENAME_FLOAT,
-    TYPENAME_DOUBLE,
-    TYPENAME_LONG_DOUBLE,
-    TYPENAME_POINTER_TO_CHAR,
-    TYPENAME_POINTER_TO_VOID,
-    TYPENAME_POINTER_TO_INT,
-    TYPENAME_CUSTOM_STACK,
-    TYPENAME_UNKNOWN
-};
-typedef enum t_typename TypeName ;
-
-
 struct queue_element {
   // Conteudo do elemento armazenado
   void *element;
@@ -58,31 +34,7 @@ struct queue {
 
 };
 
-int enQueueOriginal(Queue s, void *element, size_t element_size, TypeName typename);
-int deQueueOriginal(Queue s, void* return_element, TypeName typename);
 int _destroyNextElement(Queue s);
 void _destroyCustom(Queue s );
-
-#define TYPE_NAME(X) _Generic((X),                           \
-    unsigned char: TYPENAME_UNSIGNED_CHAR,                   \
-    char: TYPENAME_CHAR,                                     \
-    signed char: TYPENAME_SIGNED_CHAR,                       \
-    short int: TYPENAME_SHORT_INT,                           \
-    unsigned short int: TYPENAME_UNSIGNED_SHORT_INT,         \
-    int: TYPENAME_INT,                                       \
-    unsigned int: TYPENAME_UNSIGNED_INT,                     \
-    long int: TYPENAME_LONG_INT,                             \
-    unsigned long int: TYPENAME_LONG_INT,                    \
-    long long int : TYPENAME_LONG_LONG_INT,                  \
-    unsigned long long int : TYPENAME_UNSIGNED_LONG_LONG_INT,\
-    float: TYPENAME_FLOAT,                                   \
-    double: TYPENAME_DOUBLE,                                 \
-    long double: TYPENAME_LONG_DOUBLE,                       \
-    char *: TYPENAME_POINTER_TO_CHAR,                        \
-    void *: TYPENAME_POINTER_TO_VOID,                        \
-    int *: TYPENAME_POINTER_TO_INT,                          \
-    pPilha: TYPENAME_CUSTOM_STACK,                           \
-    default: TYPENAME_UNKNOWN)
-
 
 #endif

@@ -47,7 +47,6 @@ Métodos disponíveis:
 5. enQueue: Adiciona um elemento na fila. Retorna 1 para SUCESSO e 0 para FRACASSO.
 6. deQueue: Remove um elemento da fila e retonar no pointeiro passado. Retorna 1 para SUCESSO e 0 para FRACASSO.
 9. nextQueueType: Retorna um inteiro pro tipo do proximo elemento da fila.
-10. getTypeName: Retorna uma texto para o inteiro correpondente ao tipo passado.
 11. destroyQueue: Desaloca a fila e destroy seu elementos.
 
 #

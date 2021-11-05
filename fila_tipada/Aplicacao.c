@@ -65,13 +65,6 @@ void testGenericQueue(){
   printf("Fila esta cheia: %s \n", isFullQueue(queue_of_generics) ? "Sim" : "Não");
   printf("\nTentando adicionar um elemento estranho: \n");
   
-  // Cria um elemento desconhecido, que vai ser ignorado
-  struct TestStruct2 ts1 = { .test_data = "teste struct 01" };
-  struct TestStruct2 ts2 = { .test_data = "teste struct 02" };
-  struct TestStruct2 ts3 = { .test_data = "teste struct 03" };
-  struct TestStruct2 arr_structs[] = {ts1, ts2, ts3};
-  ret = enQueue(queue_of_generics, arr_structs);
-  printf("Adicionou: %s \n\n", ret ? "Sim" : "Não");
   
   printf("Voltamos adicionar elementos validos, agora um string: \n");
   ret = enQueue(queue_of_generics, new_char_vector);
@@ -112,7 +105,6 @@ void testGenericQueue(){
   }
 
   int t = nextQueueType(queue_of_generics);
-  printf("O tamanho do proximo elemento é: %d -> %s\n", t, getTypeName(t));
   double doubleRet;
   ret = deQueue(queue_of_generics, &doubleRet);
   if (ret){
@@ -123,7 +115,6 @@ void testGenericQueue(){
   }
 
   t = nextQueueType(queue_of_generics);
-  printf("O tamanho do proximo elemento é: %d -> %s\n", t, getTypeName(t));
   
   ret = deQueue(queue_of_generics, &charRet);
   if (ret){
@@ -134,7 +125,6 @@ void testGenericQueue(){
   }
 
   t = nextQueueType(queue_of_generics);
-  printf("O tamanho do proximo elemento é: %d -> %s\n", t, getTypeName(t));
   ret = deQueue(queue_of_generics, &stringRet);
   if (ret){
     printf("Removido Typed Char Pointer: [%s] \n", stringRet);
@@ -173,7 +163,6 @@ void testGenericQueue(){
   pPilha ppilhaRet;
   // criapilha(&ppilhaRet, num_elems, sizeof(int));
   t = nextQueueType(queue_of_generics);
-  printf("O tamanho do proximo elemento é: %d -> %s\n", t, getTypeName(t));
 
   ret = deQueue(queue_of_generics, &ppilhaRet);
   if (ret){

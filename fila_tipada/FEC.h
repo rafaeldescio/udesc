@@ -31,92 +31,60 @@ int nextQueueType(Queue s);
 /* Desaloca a memoria que foi alocada para a fila. */
 void destroyQueue(Queue s);
 
-char* getTypeName(int t);
+enum t_typename {
+    TYPENAME_UNSIGNED_CHAR,
+    TYPENAME_CHAR,
+    TYPENAME_SIGNED_CHAR,
+    TYPENAME_SHORT_INT,
+    TYPENAME_UNSIGNED_SHORT_INT,
+    TYPENAME_INT,
+    TYPENAME_UNSIGNED_INT,
+    TYPENAME_LONG_INT,
+    TYPENAME_UNSIGNED_LONG_INT,
+    TYPENAME_LONG_LONG_INT,
+    TYPENAME_UNSIGNED_LONG_LONG_INT,
+    TYPENAME_FLOAT,
+    TYPENAME_DOUBLE,
+    TYPENAME_LONG_DOUBLE,
+    TYPENAME_POINTER_TO_CHAR,
+    TYPENAME_POINTER_TO_VOID,
+    TYPENAME_POINTER_TO_INT,
+    TYPENAME_CUSTOM_STACK,
+    TYPENAME_UNKNOWN
+};
+typedef enum t_typename TypeName ;
 
-/* Insere um elemento no topo da fila. */
-int enQueueDouble(Queue s, double element);
-int enQueueLongDouble(Queue s, long double element);
-int enQueueInt(Queue s, int element);
-int enQueueUnsignedInt(Queue s, unsigned int element);
-int enQueueUnsignedShortInt(Queue s, unsigned short int element);
-int enQueueShortInt(Queue s, short int element);
-int enQueueLongInt(Queue s, long int element);
-int enQueueLongLongInt(Queue s, long long int element);
-int enQueueUnsignedLongInt(Queue s, unsigned long int element);
-int enQueueUnsignedLongLongInt(Queue s, unsigned long long int element);
-int enQueueFloat(Queue s, float element);
-int enQueueChar(Queue s, char element);
-int enQueueSignedChar(Queue s, signed char element);
-int enQueueUnsignedChar(Queue s, unsigned char element);
-int enQueuePointerToChar(Queue s, char *element);
-int enQueuePointerToVoid(Queue s, void* element);
-int enQueuePointerToInt(Queue s, int* element);
-int enQueueCustomStack(Queue s, pPilha element);
-int enQueueInvalid(Queue s, void *X);
+#define TYPE_NAME(X) _Generic((X),                           \
+    unsigned char: TYPENAME_UNSIGNED_CHAR,                   \
+    char: TYPENAME_CHAR,                                     \
+    signed char: TYPENAME_SIGNED_CHAR,                       \
+    short int: TYPENAME_SHORT_INT,                           \
+    unsigned short int: TYPENAME_UNSIGNED_SHORT_INT,         \
+    int: TYPENAME_INT,                                       \
+    unsigned int: TYPENAME_UNSIGNED_INT,                     \
+    long int: TYPENAME_LONG_INT,                             \
+    unsigned long int: TYPENAME_LONG_INT,                    \
+    long long int : TYPENAME_LONG_LONG_INT,                  \
+    unsigned long long int : TYPENAME_UNSIGNED_LONG_LONG_INT,\
+    float: TYPENAME_FLOAT,                                   \
+    double: TYPENAME_DOUBLE,                                 \
+    long double: TYPENAME_LONG_DOUBLE,                       \
+    char *: TYPENAME_POINTER_TO_CHAR,                        \
+    void *: TYPENAME_POINTER_TO_VOID,                        \
+    int *: TYPENAME_POINTER_TO_INT,                          \
+    pPilha: TYPENAME_CUSTOM_STACK,                           \
+    default: TYPENAME_UNKNOWN)
 
-/* Remove um elemento do final da fila. */
-int deQueueFloat(Queue s, float* a);
-int deQueueDouble(Queue s, double* a);
-int deQueueLongDouble(Queue s, long double* a );
-int deQueueInt(Queue s, int* a);
-int deQueueUnsignedInt(Queue s, unsigned int* a);
-int deQueueShortInt(Queue s, short int* a);
-int deQueueUnsignedShortInt(Queue s, unsigned short int* a);
-int deQueueLongInt(Queue s, long int* a);
-int deQueueLongLongInt(Queue s, long long int* a);
-int deQueueUnsignedLongInt(Queue s, unsigned long int* a);
-int deQueueUnsignedLongLongInt(Queue s, unsigned long long int* a);
-int deQueueChar(Queue s, char* a);
-int deQueueUnsignedChar(Queue s, unsigned char* a);
-int deQueueSignedChar(Queue s, signed char* a);
-int deQueuePointerToChar(Queue s, char** element);
-int deQueuePointerToInt(Queue s, int** element);
-int deQueuePointerToVoid(Queue s, void** element);
-int deQueueCustomStack(Queue s, pPilha* element);
-int deQueueInvalid(Queue s, void* a);
 
-/* Insere um elemento no topo da fila. */
-#define enQueue(q, X) _Generic((X),                    \
-    double: enQueueDouble,                             \
-    long double: enQueueLongDouble,                    \
-    int: enQueueInt,                                   \
-    unsigned int: enQueueUnsignedInt,                  \
-    short int: enQueueShortInt,                        \
-    unsigned short int: enQueueUnsignedShortInt,       \
-    long int: enQueueLongInt,                          \
-    unsigned long int: enQueueUnsignedLongInt,         \
-    long long int: enQueueLongLongInt,                 \
-    unsigned long long int: enQueueUnsignedLongLongInt,\
-    float: enQueueFloat,                               \
-    char: enQueueChar,                                 \
-    signed char: enQueueSignedChar,                    \
-    unsigned char: enQueueUnsignedChar,                \
-    char *: enQueuePointerToChar,                      \
-    void *: enQueuePointerToVoid,                      \
-    int *: enQueuePointerToInt,                        \
-    pPilha: enQueueCustomStack,                        \
-    default: enQueueInvalid)(q, X)
+int enQueueOriginal(Queue s, void *element, size_t element_size, TypeName typename);
+int deQueueOriginal(Queue s, void* return_element, TypeName typename);
+#define enQueue(q, X) \
+({ \
+    typeof(X) y = X; \
+    enQueueOriginal(q, &y, sizeof(X), TYPE_NAME(X)); \
+})
 
 /* Remove um elemento do final da fila. */
-#define deQueue(q, Y) _Generic((Y),                     \
-    double*: deQueueDouble,                             \
-    long double*: deQueueLongDouble,                    \
-    int*: deQueueInt,                                   \
-    unsigned int*: deQueueUnsignedInt,                  \
-    short int*: deQueueShortInt,                        \
-    unsigned short int*: deQueueUnsignedShortInt,       \
-    long int*: deQueueLongInt,                          \
-    unsigned long int*: deQueueUnsignedLongInt,         \
-    long long int*: deQueueLongLongInt,                 \
-    unsigned long long int*: deQueueUnsignedLongLongInt,\
-    float*: deQueueFloat,                               \
-    char*: deQueueChar,                                 \
-    signed char*: deQueueSignedChar,                    \
-    unsigned char*: deQueueUnsignedChar,                \
-    char **: deQueuePointerToChar,                      \
-    int **: deQueuePointerToInt,                        \
-    void **: deQueuePointerToVoid,                      \
-    pPilha *: deQueueCustomStack,                       \
-    default: deQueueInvalid)(q, Y)
+#define deQueue(q, Y) deQueueOriginal(q, Y, TYPE_NAME(*Y))
 
 #endif
