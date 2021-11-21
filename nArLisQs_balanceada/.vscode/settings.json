@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "arlis_privado.h": "c"
+        "arlis_privado.h": "c",
+        "ldse.h": "c",
+        "math.h": "c"
     }
 }

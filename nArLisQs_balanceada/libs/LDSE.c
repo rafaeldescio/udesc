@@ -3,6 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+
+
+int criarLDSEContador(CounterLDSE ** c){
+    (*c) = (CounterLDSE *)malloc(sizeof(CounterLDSE));
+    if((*c) == NULL)
+        return FRACASSO;
+    (*c)->arrayCompara = malloc(sizeof(int));
+    (*c)->sizeArrayCompara = 1;
+    return SUCESSO;
+}
 
 /* Cria uma LDSE */
 int criaLDSE(ppLDSE pp, int tamanho_info)
@@ -11,7 +22,9 @@ int criaLDSE(ppLDSE pp, int tamanho_info)
 	(*pp) = (LDSE *)malloc(sizeof(LDSE));
     if( (*pp) == NULL)
     	return FRACASSO;
-
+	if(criarLDSEContador(&(*pp)->contador) == FRACASSO){
+        return FRACASSO;
+    }
 	/* inicia atributos */
 	(*pp)->tamanho_info = tamanho_info;
 	(*pp)->inicio = NULL;
@@ -22,6 +35,13 @@ int criaLDSE(ppLDSE pp, int tamanho_info)
 
 /*-------------------------------------------------------------------------*/
 
+int destroiLDSEContador(CounterLDSE** c){
+	if( (*c) == NULL)
+		return FRACASSO;
+	free((*c)->arrayCompara);
+	free((*c));
+	(*c) = NULL;
+}
 
 /* Destroi uma LDSE */
 int destroiLDSE(ppLDSE pp)
@@ -31,6 +51,7 @@ int destroiLDSE(ppLDSE pp)
 
 	/* reinicia e desaloca o descritor */
 	reiniciaLDSE((*pp));
+	destroiLDSEContador(&(*pp)->contador);
 	free((*pp));
 	(*pp) = NULL;
 
@@ -40,6 +61,15 @@ int destroiLDSE(ppLDSE pp)
 
 /*-------------------------------------------------------------------------*/
 
+
+int reiniciaLDSEContador(CounterLDSE** c){
+	if( (*c) == NULL)
+		return FRACASSO;
+	destroiLDSEContador(c);
+	criarLDSEContador(c);
+	(*c)->indexCompara = 0;
+	(*c)->compara = 0;
+}
 
 /* reinicia a LDSE, desalocando todos os dados */
 int reiniciaLDSE(pLDSE p)
@@ -127,7 +157,9 @@ int insereInicio(pLDSE p, void *elemento)
 
 	novo->proximo = p->inicio;
 	p->inicio = novo;
-
+	if(criarLDSEContador(&(novo)->contador) == FRACASSO){
+        return FRACASSO;
+    }
 	return SUCESSO;
 }
 
@@ -155,7 +187,9 @@ int insereFim(pLDSE p, void *elemento)
 	}
 	memcpy(novo->dados, elemento, p->tamanho_info);
 	novo->proximo = NULL;
-
+	if(criarLDSEContador(&(novo)->contador) == FRACASSO){
+        return FRACASSO;
+    }
 	fim = p->inicio;
 	while(fim->proximo != NULL){
 		fim = fim->proximo;
@@ -190,6 +224,9 @@ int inserePosicao(pLDSE p, int N, void *elemento)
 		free(novo);
 		return FRACASSO;
 	}
+	if(criarLDSEContador(&(novo)->contador) == FRACASSO){
+        return FRACASSO;
+    }
 	memcpy(novo->dados, elemento, p->tamanho_info);
 	novo->proximo = NULL;
 
@@ -225,6 +262,7 @@ int removeInicio(pLDSE p, void *elemento)
 	aux = p->inicio;
 	memcpy(elemento, aux->dados, p->tamanho_info);
 	p->inicio = aux->proximo;
+	destroiLDSEContador(&aux->contador);
 	free(aux->dados);
 	free(aux);
 
@@ -255,6 +293,7 @@ int removeFim(pLDSE p, void *elemento)
 	}
 
 	memcpy(elemento, aux->dados, p->tamanho_info);
+	destroiLDSEContador(&aux->contador);
 	free(aux->dados);
 	free(aux);
 	anterior->proximo = NULL;
@@ -297,6 +336,7 @@ int removePosicao(pLDSE p, int N, void *elemento)
 	/* desaloca os dados e atualiza encadeamento */
 	memcpy(elemento, aux->dados, p->tamanho_info);
 	anterior->proximo = aux->proximo;
+	destroiLDSEContador(&aux->contador);
 	free(aux->dados);
 	free(aux);
 
@@ -415,7 +455,86 @@ void imprimeChar(pLDSE p)
 	return;
 }
 
+// ----------------------------
+// ----------- EXTRA ----------
+// -- Printe node full size ---
+// ----------------------------
+void imprimeCharFilter(pLDSE p, int word_size, int filter)
+{
+	NoLDSE *aux;
+	int elemento;
 
+	if(p == NULL)
+		return;
+	if(testaVazia(p))
+		return;
+	word_size= word_size -2;
+	aux = p->inicio;
+	int size = contaElementos(p);
+	int temp_word_size = 0;
+	if(size < word_size){
+		temp_word_size = word_size - size ;
+	}
+	int half_word = ceil(temp_word_size/2) +1;
+	printf("[");
+	for(int i = 1; i < half_word; i++){
+		printf(" ");
+	}
+	int count = 0;
+
+	while(aux != NULL){
+        memcpy(&elemento, aux->dados, p->tamanho_info);
+		if(elemento != filter){
+			printf("%c", elemento);
+			count++;
+		}
+		aux = aux->proximo;
+	}
+
+	for(int i = half_word+count; i <= word_size; i++){
+		printf(" ");
+	}
+	printf("]");
+	return;
+}
+void imprimeCharFilterFile(pLDSE p, int word_size, int filter, FILE* f)
+{
+	NoLDSE *aux;
+	int elemento;
+
+	if(p == NULL)
+		return;
+	if(testaVazia(p))
+		return;
+	word_size= word_size -2;
+	aux = p->inicio;
+	int size = contaElementos(p);
+	int temp_word_size = 0;
+	if(size < word_size){
+		temp_word_size = word_size - size ;
+	}
+	int half_word = ceil(temp_word_size/2) +1;
+	fprintf(f,"[");
+	for(int i = 1; i < half_word; i++){
+		fprintf(f," ");
+	}
+	int count = 0;
+
+	while(aux != NULL){
+        memcpy(&elemento, aux->dados, p->tamanho_info);
+		if(elemento != filter){
+			fprintf(f,"%c", elemento);
+			count++;
+		}
+		aux = aux->proximo;
+	}
+
+	for(int i = half_word+count; i <= word_size; i++){
+		fprintf(f," ");
+	}
+	fprintf(f,"]");
+	return;
+}
 // Compara a palavra com as letras inseridas na lista
 int comparaLista2Palavra(pLDSE p, char *palavra)
 {
@@ -433,7 +552,9 @@ int comparaLista2Palavra(pLDSE p, char *palavra)
 		return FRACASSO;
 
 	aux = p->inicio;
+	(p->contador)->compara++;
 	while(aux != NULL){
+			(aux->contador)->compara++;
  		  // printf("busca (%s)", palavra);
 			// imprimeChar(p);
 			// if (ct == (nlista-1)) {
@@ -444,6 +565,7 @@ int comparaLista2Palavra(pLDSE p, char *palavra)
 				//printf("[%c,%c]", *((char*)aux->dados), palavra[ct]);
 
   			if (*((char*)aux->dados) == palavra[ct]) {
+				  
 					 flag++;
 					 flag2++;
 		       //printf("(%d/%d)[%c,%c]\n", flag, nlista-1, *((char*)aux->dados), palavra[ct]);
@@ -459,4 +581,35 @@ int comparaLista2Palavra(pLDSE p, char *palavra)
 	}
   //printf("OKOK {%d}", ct);
 
+}
+
+int pegaContagemLista(pLDSE p, int* valor){
+	if(p->contador == NULL){
+		return FRACASSO;
+	}
+	(*valor) = p->contador->compara;
+	return SUCESSO;
+}
+
+int pegaContagemPorPosicao(pLDSE p, int N, int* valor){
+		NoLDSE *aux;
+	int n;
+
+	if(p == NULL)
+		return FRACASSO;
+	n = contaElementos(p);
+	if(N > n || n == 0)
+		return FRACASSO;
+
+	aux = p->inicio;
+	n = 1;
+	while(n < N){
+		aux = aux->proximo;
+		n++;
+	}
+	if(aux->contador == NULL){
+		return FRACASSO;
+	}
+	(*valor) = aux->contador->compara;
+	return SUCESSO;
 }

@@ -112,7 +112,7 @@ int main(int argc, char **argv){
     return 1;
   }
 
-  if((criaArLis(&ptr, sizeof(int)))==FRACASSO) {
+  if((criaArLisBal(&ptr, sizeof(int)))==FRACASSO) {
     printf("Erro na criação da arvore\n");
     exit(1);
   }
@@ -233,6 +233,7 @@ int main(int argc, char **argv){
 
   printf("\nImpressao ArLis (traduzida): ");
   percursoArLisBal(ptr, imprime);
+  imprimeRelatorio(ptr);
   printf("\n");
 
   destroiArLis(&ptr);

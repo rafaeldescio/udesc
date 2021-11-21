@@ -7,6 +7,22 @@
 #include "libs/LDSEEx.h"
 #include <stdio.h>
 
+typedef struct CounterArLis{
+    int insere;
+    int remove;
+    int percorre;
+    int contagemLista;
+    int indexInsere;
+    int indexRemove;
+    int indexPercorre;
+    int* arrayInsere;
+    int* arrayRemove;
+    int* arrayPercorre;
+    int sizeArrayInsere;
+    int sizeArrayRemove;
+    int sizeArrayPercorre;
+} CounterArLis;
+
 typedef struct NoArLis{
     //void *dados;
     pLDSE lista;
@@ -14,6 +30,7 @@ typedef struct NoArLis{
     struct NoArLis *esquerda;
     struct NoArLis *centro;
     struct NoArLis *direita;
+    struct CounterArLis *contador;
 }NoArLis;
 
 
@@ -21,6 +38,7 @@ typedef struct ArLis{
     int tamInfo;
     struct NoArLis *raiz;
     pLDSE bufLista;
+    struct CounterArLis *contador;
 }ArLis;
 
 typedef struct NoArLis *pNoArLis, **ppNoArLis;
