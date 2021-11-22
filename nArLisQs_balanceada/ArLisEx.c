@@ -5,9 +5,6 @@
 #define true 1
 #define false 0
 
-// Dúvidas: O que fazer nas funções recursivas que tem também função dinamica que depende do numero de elementos na LDSE?
-// O que fazer com as funções do C (malloc, free e etc)? Devo pesquisar a complexidade delas e usar, ou considerar O(1)?
-// O que fazer com as funções passadas dinamicamente? Não da pra saber a complexidade delas. Considerar linear?
 
 int criarContador(CounterArLis ** c){
     (*c) = (CounterArLis *)malloc(sizeof(CounterArLis));
@@ -15,29 +12,124 @@ int criarContador(CounterArLis ** c){
         return false;
     (*c)->arrayInsere = malloc(sizeof(int));
     (*c)->sizeArrayInsere = 1;
+    (*c)->insere = 0;
+    (*c)->indexInsere = 0;
     (*c)->arrayRemove = malloc(sizeof(int));
     (*c)->sizeArrayRemove = 1;
+    (*c)->remove = 0;
+    (*c)->indexRemove = 0;
     (*c)->arrayPercorre = malloc(sizeof(int));
     (*c)->sizeArrayPercorre = 1;
+    (*c)->percorre = 0;
+    (*c)->indexPercorre = 0;
+    (*c)->arrayBuscaNivel = malloc(sizeof(int));
+    (*c)->sizeArrayBuscaNivel = 1;
+    (*c)->buscaNivel = 0;
+    (*c)->indexBuscaNivel = 0;
+    (*c)->contagemLista = 0;
     return true;
 }
+
 int criaArLisBal(ppArLis pp, int tamInfo){
     /* aloca descritor */
 	(*pp) = (ArLis *)malloc(sizeof(ArLis));
     if( (*pp) == NULL)
-    	return FRACASSO;
-    criaLDSE(&(*pp)->bufLista,tamInfo);
-	(*pp)->tamInfo = tamInfo ;
-	(*pp)->raiz = NULL;
+    	return false;
+    if(criaLDSE(&(*pp)->bufLista, tamInfo) == false){
+        return false;
+    }
     if(criarContador(&(*pp)->contador) == false){
         return false;
     }
+	(*pp)->tamInfo = tamInfo ;
+	(*pp)->raiz = NULL;
 	return true;
 }
+
+int reiniciaContadorArLis(CounterArLis* c){
+	if( c == NULL)
+		return false;
+	free(c->arrayInsere);
+    free(c->arrayRemove);
+    free(c->arrayPercorre);
+    free(c->arrayBuscaNivel);
+    c->arrayInsere = malloc(sizeof(int));
+    c->arrayInsere[0] = 0;
+    c->sizeArrayInsere = 1;
+    c->insere = 0;
+    c->indexInsere = 0;
+    c->arrayRemove = malloc(sizeof(int));
+    c->sizeArrayRemove = 1;
+    c->remove = 0;
+    c->indexRemove = 0;
+    c->arrayPercorre = malloc(sizeof(int));
+    c->sizeArrayPercorre = 1;
+    c->percorre = 0;
+    c->indexPercorre = 0;
+    c->arrayBuscaNivel = malloc(sizeof(int));
+    c->sizeArrayBuscaNivel = 1;
+    c->buscaNivel = 0;
+    c->indexBuscaNivel = 0;
+    c->contagemLista = 0;
+    return true;
+}
+int destroiContadorArLis(CounterArLis** c){
+	if( (*c) == NULL)
+		return false;
+	free((*c)->arrayInsere);
+    free((*c)->arrayRemove);
+    free((*c)->arrayPercorre);
+    free((*c)->arrayBuscaNivel);
+	free((*c));
+	(*c) = NULL;
+    return true;
+}
+
+int destroiNo(ppNoArLis c){
+    if((*c) == NULL){
+        return true;
+    }
+    destroiNo(&(*c)->esquerda);
+    destroiNo(&(*c)->centro);
+    destroiNo(&(*c)->direita);
+    destroiLDSE(&(*c)->lista);
+    destroiContadorArLis(&(*c)->contador);
+    free((*c));
+    (*c) = NULL;
+    return true;
+}
+
+int reiniciaArLisBal(pArLis p){
+	NoArLis *aux, *left, *right, *middle;
+
+	if(p == NULL)
+		return false;
+
+	/* caminha pela arvore e desaloca todos os n�s */
+	destroiNo(&p->raiz);
+    reiniciaContadorArLis(p->contador);
+    reiniciaLDSE(p->bufLista);
+	return true;
+}
+
+int destroiArLisBal(ppArLis pp){
+	if( (*pp) == NULL)
+		return false;
+    
+    reiniciaArLisBal((*pp));
+    destroiContadorArLis(&(*pp)->contador);
+    destroiLDSE(&(*pp)->bufLista);
+    free((*pp)->bufLista);
+    free((*pp)->contador);
+	free((*pp));
+    (*pp) = NULL;
+    return true;
+}
+
 int criaNo(pLDSE* list, ppNoArLis parent, ppNoArLis node){
-    (*node) = (NoArLis *)malloc(sizeof(NoArLis)); // c * 1
-    if ((*node) == NULL){ // c * 1
-        return false; // c * 1
+    (*node) = (NoArLis *)malloc(sizeof(NoArLis));
+    if ((*node) == NULL){
+        return false;
     }
     if(criarContador(&(*node)->contador) == false){
         return false;
@@ -51,135 +143,147 @@ int criaNo(pLDSE* list, ppNoArLis parent, ppNoArLis node){
     return true;
 }
 
-int emptyChildNode(NoArLis** node){
+int emptyChildNode(pArLis p, NoArLis** node){
     if((*node) == NULL){
         return true;
     }
-    if( (*node)->esquerda == NULL && (*node)->centro == NULL &&  (*node)->direita == NULL){ // Melhor caso, c * 1. Pior caso, c * 3
-        return true; // c * 1
+    p->contador->remove++;
+    (*node)->contador->remove++;
+    if( (*node)->esquerda != NULL){
+        (*node)->esquerda->contador->remove++;
+        return false;
     }
-    return false; // c * 1
+    if(  (*node)->centro != NULL){
+        (*node)->centro->contador->remove++;
+        return false;
+    }
+    if( (*node)->direita != NULL){
+        (*node)->direita->contador->remove++;
+        return false;
+    }
+    return true;
 }
 
 int getLowLevelFreeNode(pArLis p, ppNoArLis node, int* height,  ppNoArLis* parent, ppNoArLis* child)
 {
-    (p->contador)->insere++; // c * 1
-    if ((*node) == NULL) { // c * 1
-        (*height) = 0; // c * 1
-        (*child) = node; // c * 1
-        return true; // c * 1
+    
+    (p->contador)->insere++;
+    if ((*node) == NULL) {
+        (*height) = 0;
+        (*child) = node;
+        return true;
     } else {
-        ((*node)->contador)->insere++; // c * 1
-        ppNoArLis pLeft_child, pLeft_parent, pMiddle_child, pMiddle_parent, pRight_child, pRight_parent; // c * 6
-        pLeft_parent = pMiddle_parent = pRight_parent = node; // c * 3
-        int left_height = 0, middle_height = 0, right_height = 0; // c * 3
+        ((*node)->contador)->insere++;
+        ppNoArLis pLeft_child, pLeft_parent, pMiddle_child, pMiddle_parent, pRight_child, pRight_parent;
+        pLeft_parent = pMiddle_parent = pRight_parent = node;
+        int left_height = 0, middle_height = 0, right_height = 0;
         //  printf("antes %p %p\n", &(*pLeft_child));
-        getLowLevelFreeNode(p, &(*node)->esquerda, &left_height, &pLeft_parent, &pLeft_child); // T(n/3)
-        getLowLevelFreeNode(p, &(*node)->centro, &middle_height, &pMiddle_parent, &pMiddle_child); // T(n/3)
-        getLowLevelFreeNode(p, &(*node)->direita, &right_height, &pRight_parent, &pRight_child); // T(n/3)
+        getLowLevelFreeNode(p, &(*node)->esquerda, &left_height, &pLeft_parent, &pLeft_child);
+        getLowLevelFreeNode(p, &(*node)->centro, &middle_height, &pMiddle_parent, &pMiddle_child);
+        getLowLevelFreeNode(p, &(*node)->direita, &right_height, &pRight_parent, &pRight_child);
        
-        if (left_height <= middle_height && left_height <= right_height) { // c * 1
+        if (left_height <= middle_height && left_height <= right_height) {
             // printf("selecionado da esquerda %p %p\n", &(*node)->esquerda, &(*pLeft_child));
-             (*child) = pLeft_child; // c * 1
-             (*parent) = pLeft_parent; // c * 1
-             (*height) = (left_height + 1); // c * 1
-             return true; // c * 1
+             (*child) = pLeft_child;
+             (*parent) = pLeft_parent;
+             (*height) = (left_height + 1);
+             return true;
 
         }
-        if (middle_height <= left_height && middle_height <= right_height) { // c * 1
+        if (middle_height <= left_height && middle_height <= right_height) {
             // printf("selecionado do meio %p %p\n", &(*node)->centro, &(*pMiddle_child));
-            (*child) = pMiddle_child; // c * 1
-            (*parent) = pMiddle_parent; // c * 1
-            (*height) = (middle_height + 1); // c * 1
-            return true; // c * 1
+            (*child) = pMiddle_child;
+            (*parent) = pMiddle_parent;
+            (*height) = (middle_height + 1);
+            return true;
         }
         // printf("selecionado do direita %p %p\n", &(*node)->direita, &(*pRight_child));
-        (*child) = pRight_child; // c * 1
-        (*parent) = pRight_parent; // c * 1
-        (*height) = (right_height + 1); // c * 1
-        return true; // c * 1
-        // Nessa função temos a árvore sendo dividida em 3 em toda iteração. Portanto
-        // T(n) = 3T(n/3) + c
-        // a = 3, b = 3, c = 0. Caso 1 do teorema mestre
-        // log3 na base 3 = 1, que é maior que 0. Portanto
-        // T(n) = Theta(n^logba) = Theta(n^log3 na base 3) = Theta(n)
+        (*child) = pRight_child;
+        (*parent) = pRight_parent;
+        (*height) = (right_height + 1);
+        return true;
     }
 }
-int maxHeight(NoArLis* node)
+int maxHeight(pArLis p, NoArLis* node, int type)
 {
-    if (node == NULL) // c * 1
-        return 0; // c * 1
+    if(type == 0){
+        p->contador->buscaNivel++;
+    }else if(type == 1){
+        p->contador->remove++;
+    } else if(type == 2){
+        p->contador->percorre++;
+    }
+
+    if (node == NULL)
+        return 0;
     else {
-        // Dividiu a arvore original em 3 subarvores
-        int left_height = maxHeight(node->esquerda); // T(n/3)
-        int middle_height = maxHeight(node->centro); // T(n/3)
-        int right_height = maxHeight(node->direita); // T(n/3)
+        if(type == 0){
+            (node->contador)->buscaNivel++;
+        }else if(type == 1){
+            (node->contador)->remove++;
+        } else if(type == 2){
+            (node->contador)->percorre++;
+        }
+        int left_height = maxHeight(p, node->esquerda, type);
+        int middle_height = maxHeight(p, node->centro, type);
+        int right_height = maxHeight(p, node->direita, type);
         // printf("%p node left %d\n", node, left_height);
         // printf("%p node middle %d\n", node, middle_height);
         // printf("%p node right %d\n", node, right_height);
-        if (left_height >= middle_height && left_height >= right_height) { // Melhor caso => c * 1, pior caso => c * 2
-            return (left_height + 1); // c * 1
+        if (left_height >= middle_height && left_height >= right_height) {
+            return (left_height + 1);
         }
-        if (middle_height >= left_height && middle_height >= right_height) { // Melhor caso => c * 1, pior caso => c * 2
-            return (middle_height + 1); // c * 1
+        if (middle_height >= left_height && middle_height >= right_height) {
+            return (middle_height + 1);
         }
-        return (right_height + 1); // c * 1
-        // Nessa função temos a árvore sendo dividida em 3 em toda iteração. Portanto
-        // T(n) = 3T(n/3) + c
-        // a = 3, b = 3, c = 0. Caso 1 do teorema mestre
-        // log3 na base 3 = 1, que é maior que 0. Portanto
-        // T(n) = Theta(n^logba) = Theta(n^log3 na base 3) = Theta(n)
+        return (right_height + 1);
     }
 }
 int _internalInsereBalanceado(pArLis p, pLDSE* list, NoArLis* parent, NoArLis** node )
 {   
     int ret = false;
     // é Raiz
-    if ((*node) == NULL) // c * 1
+    if ((*node) == NULL)
     {
-        return criaNo(list, &parent, node); // c * 1
+        return criaNo(list, &parent, node);
     }
-    pNoArLis pNo = NULL; // c * 1
-    ppNoArLis ppParent = &pNo; // c * 1
-    ppNoArLis ppChild = NULL; // c * 1
-    int height = 0; // c * 1
-    getLowLevelFreeNode(p, node, &height, &ppParent, &ppChild); // Theta(n)
-    if((*ppParent) == NULL){ // c * 1
-        return criaNo(list, &parent, ppChild); // c * 1
+    pNoArLis pNo = NULL;
+    ppNoArLis ppParent = &pNo;
+    ppNoArLis ppChild = NULL;
+    int height = 0;
+    getLowLevelFreeNode(p, node, &height, &ppParent, &ppChild);
+    if((*ppParent) == NULL){
+        return criaNo(list, &parent, ppChild);
     } else{
-        return criaNo(list, ppParent, ppChild); // c * 1
+        return criaNo(list, ppParent, ppChild);
     }
 }
 
 
 int _insereArLisBal(pArLis p, void *novo, int (* cmp)(void *p1, void *p2)){
 
-    if( p->bufLista == NULL){ // c * 1
-        pLDSE tempList = malloc(sizeof(pLDSE)); // c * 1
-        if(tempList == NULL){ // c * 1
-            return false; // c * 1
+    if( p->bufLista == NULL){
+        pLDSE tempList;
+        int retLdse = criaLDSE(&tempList, sizeof(p->tamInfo));    
+        if(retLdse == false) {
+            return false;
         }
-        int retLdse = criaLDSE(&tempList, sizeof(p->tamInfo)); // c * 1  
-        if(retLdse == false) { // c * 1
-            return false; // c * 1
-        }
-        p->bufLista = tempList; // c * 1
+        p->bufLista = tempList;
 
     }
-    int space = 32, new_line = 10, max_val = 123; // c * 3 
-    if (cmp(novo, &new_line) != 0 && (cmp(novo, &space) < 0 || cmp(novo, &max_val) > 0)) { // Melhor caso c * 1, pior caso c * 6, considerando que cmp é O(1)
+    int space = 32, new_line = 10, max_val = 123;
+    if (cmp(novo, &new_line) != 0 && (cmp(novo, &space) < 0 || cmp(novo, &max_val) > 0)) {
         // printf("\nFalha ao inserir - Valor inválido [%d]\n", *((int*)novo));
-        return false; // c * 1
+        return false;
     }
-    int ret = insereFim(p->bufLista, novo); // Sendo k o número de elementos em bufLista, é O(k)
+    int ret = insereFim(p->bufLista, novo);
     
-    if (cmp(novo, &space) == 0 ||  cmp(novo, &new_line) == 0) { // Melhor caso c * 2, pior caso c * 4, considerando que cmp é O(1)
-        ret = _internalInsereBalanceado(p, &p->bufLista, NULL, &p->raiz); // Theta(n log n) + c
-        p->bufLista = NULL;// c * 1
-        // int currentHeight = maxHeight(p->raiz);
-        // printf("\nCurrent height %d\n", currentHeight);
+    if (cmp(novo, &space) == 0 ||  cmp(novo, &new_line) == 0) {
+        ret = _internalInsereBalanceado(p, &p->bufLista, NULL, &p->raiz);
+        p->bufLista = NULL;
     }
-    return ret; // c * 1
+ 
+    return ret;
 }
 
 int insereArLisBal(pArLis p, void *novo, int (* cmp)(void *p1, void *p2)){
@@ -201,50 +305,38 @@ int insereArLisBal(pArLis p, void *novo, int (* cmp)(void *p1, void *p2)){
 
 int execHeight(pArLis p, NoArLis* node, int compHeight, int height, void (* processa)(void *p))
 {
-    (p->contador)->percorre++; // c * 1
-    if (node == NULL) // c * 1
-        return 0; // c * 1
+    (p->contador)->percorre++;
+    if (node == NULL)
+        return 0;
     else {
-        ((node)->contador)->percorre++; // c * 1
-        if(compHeight == height){ // c * 1
-            processa(node->lista); // f(k) * 1
+        ((node)->contador)->percorre++;
+        if(compHeight == height){
+            processa(node->lista);
         }
         //ignora os níveis superiores
-        if(compHeight > height){ // c * 1
-            return 0; // c * 1
+        if(compHeight > height){
+            return 0;
         }
 
-        int left_height = execHeight(p, node->esquerda, compHeight+1, height, processa); // T(n/3)
-        int middle_height = execHeight(p,node->centro,  compHeight+1, height, processa); // T(n/3)
-        int right_height = execHeight(p, node->direita, compHeight+1, height, processa); // T(n/3)
-        if (left_height <= middle_height && left_height <= right_height) { // Melhor caso => c * 1, pior caso => c * 2
+        int left_height = execHeight(p, node->esquerda, compHeight+1, height, processa);
+        int middle_height = execHeight(p,node->centro,  compHeight+1, height, processa);
+        int right_height = execHeight(p, node->direita, compHeight+1, height, processa);
+        if (left_height <= middle_height && left_height <= right_height) {
             return (left_height + 1);
         }
-        if (middle_height <= left_height && middle_height <= right_height) { // Melhor caso => c * 1, pior caso => c * 2
-            return (middle_height + 1); // c * 1
+        if (middle_height <= left_height && middle_height <= right_height) {
+            return (middle_height + 1);
         }
-        return (right_height + 1); // c * 1   
-        // Nessa função temos a árvore sendo dividida em 3 em toda iteração, até que se atinja a altura desejada.
-        // Aqui a complexidade é em uma função do parâmetro height. Nesse caso h. Para essa eq. n é o numero de nós processados.
-        // T(n) = 3T(n/3) + O(1)
-        // a = 3, b = 3 e c = 0 => Caso 1 teorema mestre
-        // T(n) = Theta(n) 
-        // O número de nós processados é, conforme PG (progressao geometrica), (3^h-1)/2, portanto:
-        // T(h) = Theta((3^h-1)/2)
-        // Somando com o processamento dos nós na última altura:
-        // T(h) = Theta((3^h-1)/2) + 3^h*O(f(k))
+        return (right_height + 1);       
     }
 }
 
 
 int _percursoArLisBal(pArLis pa, void (* processa)(void *p)){
 
-    int ret = true; // c * 1
-    int max_height = maxHeight(pa->raiz); // Theta(n log n)
-    printf("\n"); // c * 1
-    // O custo disso é representado por um somatório
-    // Somatório de 0 até h de Theta((3^i-1)/2) + 3^i*O(f(k)), sendo h = log3 de n no pior caso, portanto
-    // Somatório de 0 até log3 de n de Theta((3^i-1)/2) + 3^h*O(f(k)). Bastante custoso.
+    int ret = true;
+    int max_height = maxHeight(pa, pa->raiz, 2);
+    printf("\n");
     for(int i = 0;  i <= max_height ; i++){
         execHeight(pa, pa->raiz, 0, i, processa);
     }
@@ -268,22 +360,23 @@ int percursoArLisBal(pArLis pa, void (* processa)(void *p)){
 int getHeightLevelNode(pArLis p, ppNoArLis node, char* word, int* height,  ppNoArLis* parent, ppNoArLis* child, int (* processa)(pLDSE p, char *palavra))
 {   
     
-    if((*node) == NULL){ // c * 1
-        (*child) = NULL; // c * 1
-        return false; // c * 1
+    (p->contador)->remove++;
+    if((*node) == NULL){
+        (*child) = NULL;
+        return false;
     }
-    (p->contador)->remove++; // c * 1
-    ((*node)->contador)->remove++; // c * 1
+    ((*node)->contador)->remove++;
     // printf("comparando palavra %s %d\n", word, processa((*node)->lista, word));
-    (p->contador)->contagemLista++; // c * 1
-    if (processa((*node)->lista, word) == true) { // n * O(f(k)) sendo k o número de elementos na lista
-        (*height) = 0; // c * 1
-        (*child) = node; // c * 1
-        return true; // c * 1
+    (p->contador)->contagemLista++;
+
+    if (processa((*node)->lista, word) == true) {
+        (*height) = 0;
+        (*child) = node;
+        return true;
     } else {
-        ppNoArLis pLeft_child, pLeft_parent, pMiddle_child, pMiddle_parent, pRight_child, pRight_parent; // c * 6;
-        pLeft_parent = pMiddle_parent = pRight_parent = node; // c * 3
-        int left_height = 0, middle_height = 0, right_height = 0; // c * 3
+        ppNoArLis pLeft_child, pLeft_parent, pMiddle_child, pMiddle_parent, pRight_child, pRight_parent;
+        pLeft_parent = pMiddle_parent = pRight_parent = node;
+        int left_height = 0, middle_height = 0, right_height = 0;
         //  printf("antes %p %p\n", &(*pLeft_child));
         int ret_left = getHeightLevelNode(p, &(*node)->esquerda, word, &left_height, &pLeft_parent, &pLeft_child, processa);
         int ret_middle = getHeightLevelNode(p, &(*node)->centro, word, &middle_height, &pMiddle_parent, &pMiddle_child, processa);
@@ -291,142 +384,127 @@ int getHeightLevelNode(pArLis p, ppNoArLis node, char* word, int* height,  ppNoA
         // printf("-> %p node left %d\n", node, left_height);
         // printf("-> %p node middle %d\n", node, middle_height);
         // printf("-> %p node right %d\n", node, right_height);
-        if (ret_right == true && right_height >= middle_height && right_height >= left_height) { // Melhor caso, c * 1. Pior caso, c * 3
+        if (ret_right == true && right_height >= middle_height && right_height >= left_height) {
             // printf("selecionado da esquerda %p %p\n", &(*node)->esquerda, &(*pLeft_child));
-             (*child) = pRight_child; // c * 1
-             (*parent) = pRight_parent; // c * 1
-             (*height) = (right_height + 1); // c * 1
-             return ret_right; // c * 1
+             (*child) = pRight_child;
+             (*parent) = pRight_parent;
+             (*height) = (right_height + 1);
+             return ret_right;
 
         }
-        if (ret_middle == true && middle_height >= left_height && middle_height >= right_height) { // Melhor caso, c * 1. Pior caso, c * 3
+        if (ret_middle == true && middle_height >= left_height && middle_height >= right_height) {
             // printf("selecionado do meio %p %p\n", &(*node)->centro, &(*pMiddle_child));
-            (*child) = pMiddle_child; // c * 1
-            (*parent) = pMiddle_parent; // c * 1
-            (*height) = (middle_height + 1); // c * 1
-            return ret_middle; // c * 1
+            (*child) = pMiddle_child;
+            (*parent) = pMiddle_parent;
+            (*height) = (middle_height + 1);
+            return ret_middle;
         }
         // printf("selecionado do direita %p %p\n", &(*node)->direita, &(*pRight_child));
-        if(ret_left == true){ // c * 1 
-            (*child) = pLeft_child; // c * 1
-            (*parent) = pLeft_parent; // c * 1
-            (*height) = (left_height + 1); // c * 1
-            return ret_left; // c * 1
+        if(ret_left == true){
+            (*child) = pLeft_child;
+            (*parent) = pLeft_parent;
+            (*height) = (left_height + 1);
+            return ret_left;
         }
-        return false; // c * 1
-        // Nessa função temos a árvore sendo dividida em 3 em toda iteração. Portanto
-        // T(n) = 3T(n/3) + c
-        // a = 3, b = 3, c = 0. Caso 1 do teorema mestre
-        // log3 na base 3 = 1, que é maior que 0. Portanto
-        // T(n) = Theta(n^logba) = Theta(n^log3 na base 3) = Theta(n)
-        // Adicionando a execução da função externa
-        // T(n) = Theta(n) + n*O(f(k))
+        return false;
     }
-}
-
-int removeChildNode(ppNoArLis ppChild){
-    reiniciaLDSE((*ppChild)->lista); // Sendo k o numero de elementos na LDSE, O(k);
-    free((*ppChild)); // c * 1
-    (*ppChild) = NULL; // c * 1
 }
 
 int getRemovableWithNoChild(pArLis p, NoArLis* node, ppNoArLis* maxNode, int height, int* max_height)
 {
-    (p)->contador->remove++; // c * 1
-    if (node == NULL) // c * 1
+    if (node == NULL)
         return 0;
     else {
-        (node)->contador->remove++; // c * 1
-        int left_height = getRemovableWithNoChild(p, node->esquerda, maxNode, height+1, max_height); // T(n/3)
-        int middle_height = getRemovableWithNoChild(p, node->centro, maxNode, height+1, max_height); // T(n/3) 
-        int right_height = getRemovableWithNoChild(p, node->direita, maxNode, height+1, max_height); // T(n/3)
+        (p)->contador->remove++;
+        (node)->contador->remove++;
+        int left_height = getRemovableWithNoChild(p, node->esquerda, maxNode, height+1, max_height);
+        int middle_height = getRemovableWithNoChild(p, node->centro, maxNode, height+1, max_height);
+        int right_height = getRemovableWithNoChild(p, node->direita, maxNode, height+1, max_height);
         // printf("%p node left %d\n", node, left_height);
         // printf("%p node middle %d\n", node, middle_height);
         // printf("%p node right %d\n", node, right_height);
-        if (right_height >= middle_height && right_height >= left_height) { // Melhor caso, c * 1. Piro caso, c * 2
+        if (right_height >= middle_height && right_height >= left_height) {
             // printf(" no da direita elegido %d\n\n", height);
-            if(node->direita != NULL && height >= (*max_height) && emptyChildNode(&node->direita)){ // Melhor caso, c * 1. Piro caso, c * 3
-                (*maxNode) = &node->direita; // c * 1
-                (*max_height) = (right_height + 1); // c * 1
+            if(node->direita != NULL && height >= (*max_height) && emptyChildNode(p, &node->direita)){
+                (*maxNode) = &node->direita;
+                (*max_height) = (right_height + 1);
             }
-            return (right_height + 1); // c * 1
+            return (right_height + 1);
         }
-        if (middle_height <= left_height && middle_height <= right_height) { // Melhor caso, c * 1. Pior caso, c * 2
+        if (middle_height <= left_height && middle_height <= right_height) {
             // printf(" no da meio elegido %d\n\n", height);
-            if(node->centro != NULL && height >= (*max_height) && emptyChildNode(&node->centro)){ // Melhor caso, c * 1. Piro caso, c * 3
-                (*maxNode) = &node->centro; // Melhor caso c * 1
-                (*max_height) = (middle_height + 1); // Melhor caso c * 1
+            if(node->centro != NULL && height >= (*max_height) && emptyChildNode(p, &node->centro)){
+                (*maxNode) = &node->centro;
+                (*max_height) = (middle_height + 1);
             }
-            return (middle_height + 1); // Melhor caso c * 1
+            return (middle_height + 1);
         }
 
         // printf(" no da esquerda elegido %d\n\n", height);
-        if (node->esquerda != NULL && height >= (*max_height) && emptyChildNode(&node->esquerda)){ // Melhor caso, c * 1. Piro caso, c * 3
-            (*maxNode) = &node->esquerda; // Melhor caso c * 1
-            (*max_height) = (left_height + 1); // Melhor caso c * 1
+        if (node->esquerda != NULL && height >= (*max_height) && emptyChildNode(p, &node->esquerda)){
+            (*maxNode) = &node->esquerda;
+            (*max_height) = (left_height + 1);
         }
-        return (left_height + 1); // Melhor caso c * 1
-        // Nessa função temos a árvore sendo dividida em 3 em toda iteração. Portanto
-        // T(n) = 3T(n/3) + c
-        // a = 3, b = 3, c = 0. Caso 1 do teorema mestre
-        // log3 na base 3 = 1, que é maior que 0. Portanto
-        // T(n) = Theta(n^logba) = Theta(n^log3 na base 3) = Theta(n)
+        return (left_height + 1);
     }
 }
-int removeRebalancearArvore(pArLis p, pNoArLis root, ppNoArLis remove_node, int max_height){ // O(1) + O(k)
-    pNoArLis max_node = NULL; // c * 1
-    ppNoArLis ppmax_node = &max_node; // c * 1
-    int max = 0; // c * 1
+int removeRebalancearArvore(pArLis p, pNoArLis root, ppNoArLis remove_node, int max_height){
+    pNoArLis max_node = NULL;
+    ppNoArLis ppmax_node = &max_node;
+    int max = 0;
     // Busca o nó com mais alto nível sem filhos
-    int h = getRemovableWithNoChild(p,root, &ppmax_node, 0, &max); // Theta(n)
+    int h = getRemovableWithNoChild(p, root, &ppmax_node, 0, &max);
     
-    if((*ppmax_node) != NULL){ // c * 1
-        imprimeChar((*ppmax_node)->lista); // O(k) sendo K o número de elementos da lista
-        printf("\n\n"); // c * 1
-        imprimeChar((*remove_node)->lista); // c * 1
-        printf("\n\n"); // c * 1
-    
+    p->contador->remove++;
+    if((*ppmax_node) != NULL){
+        (*ppmax_node)->contador->remove++;
         // Troca o nó de mais alto nível, com o nó que vai ser removido
-        reiniciaLDSE((*remove_node)->lista); // Sendo k o numero de elementos na LDSE, O(k);
-        (*remove_node)->lista = (*ppmax_node)->lista; // c * 1
-        free((*ppmax_node)); // c * 1
-        (*ppmax_node) = NULL; // c * 1
-        return true; // c * 1
+        destroiLDSE(&(*remove_node)->lista);
+        destroiContadorArLis(&(*remove_node)->contador);
+        (*remove_node)->lista = (*ppmax_node)->lista;
+        (*remove_node)->contador = (*ppmax_node)->contador;
+        // memcpy((*remove_node)->lista, (*ppmax_node)->lista, sizeof(pLDSE));
+        // memcpy((*remove_node)->contador, (*ppmax_node)->contador, sizeof(pLDSE));
+        free((*ppmax_node));
+        (*ppmax_node) = NULL;
+        return true;
     }
-    return false; // c * 1
+    return false;
 }
 
 int _removeArLisBal(pArLis p, char* word, int max_height, NoArLis** root )
 {
     
-    int ret = false; // c * 1
-    if ((*root) == NULL) // c * 1
+    int ret = false;
+    if ((*root) == NULL)
     {
-        return true; // c * 1
+        return false;
     }
-    pNoArLis pNo = NULL, pChild = NULL; // c * 1
-    ppNoArLis ppParent = &pNo; // c * 1
-    ppNoArLis ppChild = &pChild; // c * 1
-    int height = 0; // c * 1
-    ret = getHeightLevelNode(p, root, word, &height, &ppParent, &ppChild, comparaLista2Palavra); // T(n) = Theta(n) + n*O(f(k))
+    
+    pNoArLis pNo = NULL, pChild = NULL;
+    ppNoArLis ppParent = &pNo;
+    ppNoArLis ppChild = &pChild;
+    int height = 0;
+    ret = getHeightLevelNode(p, root, word, &height, &ppParent, &ppChild, comparaLista2Palavra);
     // printf("ret2 %d %p\n\n", ret, (*ppChild));
-    if(ret == false ||  (*ppChild) == NULL){ // No melhor caso c * 1, no pior caso c * 2
-        return false; // c * 1
+    if(ret == false ||  (*ppChild) == NULL){
+        return false;
     }
     // printf("Rmoving child %p %d %d\n\n", (*ppChild), height, max_height);
-    if(emptyChildNode(ppChild) == true && height == (max_height-1 )){ // No melhor caso c * 1, no pior caso c * 2
+    if(emptyChildNode(p, ppChild) == true && height == (max_height-1 )){
         // Está no último nivel e não tem filhos, apenas remove.
-        removeChildNode(ppChild); // O(k) sendo k o número de itens na LDSE
-        return ret; // c * 1
+        return destroiNo(ppChild);
     }
-    return removeRebalancearArvore(p,(*root), ppChild, max_height); // O(1) + O(k)
+    return removeRebalancearArvore(p,(*root), ppChild, max_height);
+   
+    
 }
 
 int removeArLisBal(pArLis p, void *item){
     CounterArLis* contador = p->contador;
-    int max_height = maxHeight(p->raiz); // Theta(n)
+    int max_height = maxHeight(p, p->raiz, 1);
     int currentRemoveCount = contador->remove;
-    int ret = _removeArLisBal(p, item, max_height, &p->raiz); // Theta(n) + n*O(f(k)) + O(k)
+    int ret = _removeArLisBal(p, item, max_height, &p->raiz);
     int idx = contador->indexRemove++;
     if(idx >= contador->sizeArrayRemove ){
         contador->sizeArrayRemove *= 2;
@@ -436,9 +514,17 @@ int removeArLisBal(pArLis p, void *item){
     return ret;
 }
 
-
 int nivelArLis(pArLis p){
-    return maxHeight(p->raiz);
+    CounterArLis* contador = p->contador;
+    int currentNivelCount = contador->buscaNivel;
+    int ret = maxHeight(p, p->raiz, 0);
+    int idx = contador->indexBuscaNivel++;
+    if(idx >= contador->sizeArrayBuscaNivel ){
+        contador->sizeArrayBuscaNivel *= 2;
+        contador->arrayBuscaNivel = realloc( contador->arrayBuscaNivel, contador->sizeArrayBuscaNivel * sizeof(int));
+    }
+    contador->arrayBuscaNivel[idx] = contador->buscaNivel - currentNivelCount;
+    return ret;
 }
 
 /** extra **/
@@ -490,7 +576,8 @@ int imprimeContadorNo(pArLis pa, pNoArLis node, FILE* f){
     imprimeCharFilterFile(node->lista, 20, 10, f);
     fprintf(f," -> [%d]", (node->contador)->insere);
     fprintf(f,"  [%d]", (node->contador)->remove);
-    fprintf(f,"  [%d]\n", (node->contador)->percorre);
+    fprintf(f,"  [%d]", (node->contador)->percorre);
+    fprintf(f,"  [%d]\n", (node->contador)->buscaNivel);
     if(node->esquerda != NULL){
         imprimeContadorNo(pa, node->esquerda, f);
     }
@@ -506,7 +593,7 @@ int imprimeContadorNo(pArLis pa, pNoArLis node, FILE* f){
 int imprimePorTentativa(pArLis pa, FILE* f){
     fprintf(f,"\n###################################################\n\n");
     
-    fprintf(f,"Contagem de comparacoes por insercao por tentativa\n");
+    fprintf(f,"Contagem de comparacoes por execucao do metodo de insercao\n");
     CounterArLis* contador = pa->contador;
     int indexInsere = contador->indexInsere;
     fprintf(f,"Tentativa [x] -> [total] \n");
@@ -514,15 +601,15 @@ int imprimePorTentativa(pArLis pa, FILE* f){
         fprintf(f,"Tentativa  [%d] -> [%d]\n", i, contador->arrayInsere[i]);
     }
     fprintf(f,"\n\n");
-    fprintf(f,"Contagem de comparacoes por remocao por tentativa\n");
+    fprintf(f,"Contagem de comparacoes por execucao do metodo de remocao\n");
     int indexRemove = contador->indexRemove;
     fprintf(f,"Tentativa [x] -> [total]  \n");
-    for(int i; i< indexRemove; i++){
+    for(int i; i < indexRemove; i++){
         fprintf(f,"Tentativa  [%d] -> [%d]\n", i, contador->arrayRemove[i]);
     }
 
     fprintf(f,"\n\n");
-    fprintf(f,"Contagem de comparacoes por percurso por tentativa\n");
+    fprintf(f,"Contagem de comparacoes por por execucao do metodo de percorrer\n");
     int indexPercorre = contador->indexPercorre;
     fprintf(f,"Tentativa [x] -> [total]  \n");
     for(int i; i< indexPercorre; i++){
@@ -561,7 +648,7 @@ int imprimeContadorNoANoLista(pArLis pa, pNoArLis node, FILE* f){
     int contagem = 0, ret  =0;
     int tamanhoLista = contaElementos(node->lista);
     fprintf(f,"\n");
-    fprintf(f,"  Contagem nos nós por posicao da lista ");
+    fprintf(f,"  Contagem de comparacoes nos nós por posicao da lista ");
     imprimeCharFilterFile(node->lista, 20, 10, f);
     fprintf(f,": \n");
     for(int i =0; i < tamanhoLista; i++ ){
@@ -586,7 +673,7 @@ int imprimeContadorNoANoLista(pArLis pa, pNoArLis node, FILE* f){
 int imprimeContadorLista(pArLis pa, FILE* f){
     CounterArLis* contador = pa->contador;
     fprintf(f,"###################################################\n\n");
-    fprintf(f,"Tentativas na lista [nó] -> [total]  \n");
+    fprintf(f,"Comparacoes na lista [nó] -> [total]  \n");
     imprimeContadorNoLista(pa, pa->raiz,f);
     imprimeContadorNoANoLista(pa, pa->raiz, f);
     return true;
@@ -594,7 +681,7 @@ int imprimeContadorLista(pArLis pa, FILE* f){
 
 int imprimePorNo(pArLis pa, FILE* f){
     fprintf(f,"###################################################\n\n");
-    fprintf(f,"[Conteudo do no] -> [insercoes] [remocoes] [percurso]\n\n");   
+    fprintf(f,"[Comparacoes do nó] -> [insercoes] [remocoes] [percurso] [busca nivel]\n\n");   
     return imprimeContadorNo(pa, pa->raiz, f);
 }
 
@@ -606,6 +693,7 @@ int _imprimeRelatorio(pArLis pa, FILE* f){
     fprintf(f,"Numero de comparacoes para inserir arvore: %d\n", c->insere);
     fprintf(f,"Numero de comparacoes para remover arvore: %d\n", c->remove);
     fprintf(f,"Numero de comparacoes para percorrer arvore: %d\n", c->percorre);
+    fprintf(f,"Numero de comparacoes para buscar nivel da arvore: %d\n", c->buscaNivel);
     fprintf(f,"Numero de comparacoes por palavra na lista: %d\n", c->contagemLista);
     fprintf(f,"\n\n");
     imprimePorNo(pa, f);
