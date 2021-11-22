@@ -10,8 +10,7 @@ int criarLDSEContador(CounterLDSE ** c){
     (*c) = (CounterLDSE *)malloc(sizeof(CounterLDSE));
     if((*c) == NULL)
         return FRACASSO;
-    (*c)->arrayCompara = malloc(sizeof(int));
-    (*c)->sizeArrayCompara = 1;
+	(*c)->compara = 0;
     return SUCESSO;
 }
 
@@ -36,11 +35,11 @@ int criaLDSE(ppLDSE pp, int tamanho_info)
 /*-------------------------------------------------------------------------*/
 
 int destroiLDSEContador(CounterLDSE** c){
-	if( (*c) == NULL)
+	if((*c) == NULL)
 		return FRACASSO;
-	free((*c)->arrayCompara);
 	free((*c));
 	(*c) = NULL;
+	return SUCESSO;
 }
 
 /* Destroi uma LDSE */
@@ -65,10 +64,8 @@ int destroiLDSE(ppLDSE pp)
 int reiniciaLDSEContador(CounterLDSE** c){
 	if( (*c) == NULL)
 		return FRACASSO;
-	destroiLDSEContador(c);
-	criarLDSEContador(c);
-	(*c)->indexCompara = 0;
 	(*c)->compara = 0;
+	return SUCESSO;
 }
 
 /* reinicia a LDSE, desalocando todos os dados */
@@ -83,6 +80,7 @@ int reiniciaLDSE(pLDSE p)
 	aux = p->inicio;
 	while(aux != NULL){
 		prox = aux->proximo;
+		destroiLDSEContador(&aux->contador);
 		free(aux->dados);
 		free(aux);
 		aux = prox;
@@ -562,7 +560,7 @@ int comparaLista2Palavra(pLDSE p, char *palavra)
 			// 	return SUCESSO;
 			// }
 			if ((*((char*)aux->dados) >= 33) && (*((char*)aux->dados) < 123)) {
-				//printf("[%c,%c]", *((char*)aux->dados), palavra[ct]);
+				// printf("[%c,%c]", *((char*)aux->dados), palavra[ct]);
 
   			if (*((char*)aux->dados) == palavra[ct]) {
 				  
@@ -585,6 +583,7 @@ int comparaLista2Palavra(pLDSE p, char *palavra)
 
 int pegaContagemLista(pLDSE p, int* valor){
 	if(p->contador == NULL){
+		(*valor) = 0;
 		return FRACASSO;
 	}
 	(*valor) = p->contador->compara;

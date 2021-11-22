@@ -3,9 +3,6 @@
 
 typedef struct CounterLDSE{
     int compara;
-    int indexCompara;
-    int* arrayCompara;
-    int sizeArrayCompara;
 } CounterLDSE;
 
 typedef struct LDSE{

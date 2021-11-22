@@ -11,16 +11,20 @@ typedef struct CounterArLis{
     int insere;
     int remove;
     int percorre;
+    int buscaNivel;
     int contagemLista;
     int indexInsere;
     int indexRemove;
     int indexPercorre;
+    int indexBuscaNivel;
     int* arrayInsere;
     int* arrayRemove;
     int* arrayPercorre;
+    int* arrayBuscaNivel;
     int sizeArrayInsere;
     int sizeArrayRemove;
     int sizeArrayPercorre;
+    int sizeArrayBuscaNivel;
 } CounterArLis;
 
 typedef struct NoArLis{

@@ -12,25 +12,120 @@ int criarContador(CounterArLis ** c){
         return false;
     (*c)->arrayInsere = malloc(sizeof(int));
     (*c)->sizeArrayInsere = 1;
+    (*c)->insere = 0;
+    (*c)->indexInsere = 0;
     (*c)->arrayRemove = malloc(sizeof(int));
     (*c)->sizeArrayRemove = 1;
+    (*c)->remove = 0;
+    (*c)->indexRemove = 0;
     (*c)->arrayPercorre = malloc(sizeof(int));
     (*c)->sizeArrayPercorre = 1;
+    (*c)->percorre = 0;
+    (*c)->indexPercorre = 0;
+    (*c)->arrayBuscaNivel = malloc(sizeof(int));
+    (*c)->sizeArrayBuscaNivel = 1;
+    (*c)->buscaNivel = 0;
+    (*c)->indexBuscaNivel = 0;
+    (*c)->contagemLista = 0;
     return true;
 }
+
 int criaArLisBal(ppArLis pp, int tamInfo){
     /* aloca descritor */
 	(*pp) = (ArLis *)malloc(sizeof(ArLis));
     if( (*pp) == NULL)
-    	return FRACASSO;
-    criaLDSE(&(*pp)->bufLista,tamInfo);
-	(*pp)->tamInfo = tamInfo ;
-	(*pp)->raiz = NULL;
+    	return false;
+    if(criaLDSE(&(*pp)->bufLista, tamInfo) == false){
+        return false;
+    }
     if(criarContador(&(*pp)->contador) == false){
         return false;
     }
+	(*pp)->tamInfo = tamInfo ;
+	(*pp)->raiz = NULL;
 	return true;
 }
+
+int reiniciaContadorArLis(CounterArLis* c){
+	if( c == NULL)
+		return false;
+	free(c->arrayInsere);
+    free(c->arrayRemove);
+    free(c->arrayPercorre);
+    free(c->arrayBuscaNivel);
+    c->arrayInsere = malloc(sizeof(int));
+    c->arrayInsere[0] = 0;
+    c->sizeArrayInsere = 1;
+    c->insere = 0;
+    c->indexInsere = 0;
+    c->arrayRemove = malloc(sizeof(int));
+    c->sizeArrayRemove = 1;
+    c->remove = 0;
+    c->indexRemove = 0;
+    c->arrayPercorre = malloc(sizeof(int));
+    c->sizeArrayPercorre = 1;
+    c->percorre = 0;
+    c->indexPercorre = 0;
+    c->arrayBuscaNivel = malloc(sizeof(int));
+    c->sizeArrayBuscaNivel = 1;
+    c->buscaNivel = 0;
+    c->indexBuscaNivel = 0;
+    c->contagemLista = 0;
+    return true;
+}
+int destroiContadorArLis(CounterArLis** c){
+	if( (*c) == NULL)
+		return false;
+	free((*c)->arrayInsere);
+    free((*c)->arrayRemove);
+    free((*c)->arrayPercorre);
+    free((*c)->arrayBuscaNivel);
+	free((*c));
+	(*c) = NULL;
+    return true;
+}
+
+int destroiNo(ppNoArLis c){
+    if((*c) == NULL){
+        return true;
+    }
+    destroiNo(&(*c)->esquerda);
+    destroiNo(&(*c)->centro);
+    destroiNo(&(*c)->direita);
+    destroiLDSE(&(*c)->lista);
+    destroiContadorArLis(&(*c)->contador);
+    free((*c));
+    (*c) = NULL;
+    return true;
+}
+
+int reiniciaArLisBal(pArLis p){
+	NoArLis *aux, *left, *right, *middle;
+
+	if(p == NULL)
+		return false;
+
+	/* caminha pela arvore e desaloca todos os n�s */
+	destroiNo(&p->raiz);
+    reiniciaContadorArLis(p->contador);
+    reiniciaLDSE(p->bufLista);
+	return true;
+}
+
+int destroiArLisBal(ppArLis pp){
+	if( (*pp) == NULL)
+		return false;
+    
+    reiniciaArLisBal((*pp));
+    destroiContadorArLis(&(*pp)->contador);
+    destroiLDSE(&(*pp)->bufLista);
+    free((*pp)->bufLista);
+    free((*pp)->contador);
+	free((*pp));
+    (*pp) = NULL;
+    return true;
+}
+
 int criaNo(pLDSE* list, ppNoArLis parent, ppNoArLis node){
     (*node) = (NoArLis *)malloc(sizeof(NoArLis));
     if ((*node) == NULL){
@@ -48,25 +143,36 @@ int criaNo(pLDSE* list, ppNoArLis parent, ppNoArLis node){
     return true;
 }
 
-int emptyChildNode(NoArLis** node){
+int emptyChildNode(pArLis p, NoArLis** node){
     if((*node) == NULL){
         return true;
     }
-    if( (*node)->esquerda == NULL && (*node)->centro == NULL &&  (*node)->direita == NULL){
-        return true;
+    p->contador->remove++;
+    (*node)->contador->remove++;
+    if( (*node)->esquerda != NULL){
+        (*node)->esquerda->contador->remove++;
+        return false;
     }
-    return false;
+    if(  (*node)->centro != NULL){
+        (*node)->centro->contador->remove++;
+        return false;
+    }
+    if( (*node)->direita != NULL){
+        (*node)->direita->contador->remove++;
+        return false;
+    }
+    return true;
 }
 
 int getLowLevelFreeNode(pArLis p, ppNoArLis node, int* height,  ppNoArLis* parent, ppNoArLis* child)
 {
     
+    (p->contador)->insere++;
     if ((*node) == NULL) {
         (*height) = 0;
         (*child) = node;
         return true;
     } else {
-        (p->contador)->insere++;
         ((*node)->contador)->insere++;
         ppNoArLis pLeft_child, pLeft_parent, pMiddle_child, pMiddle_parent, pRight_child, pRight_parent;
         pLeft_parent = pMiddle_parent = pRight_parent = node;
@@ -98,14 +204,29 @@ int getLowLevelFreeNode(pArLis p, ppNoArLis node, int* height,  ppNoArLis* paren
         return true;
     }
 }
-int maxHeight(NoArLis* node)
+int maxHeight(pArLis p, NoArLis* node, int type)
 {
+    if(type == 0){
+        p->contador->buscaNivel++;
+    }else if(type == 1){
+        p->contador->remove++;
+    } else if(type == 2){
+        p->contador->percorre++;
+    }
+
     if (node == NULL)
         return 0;
     else {
-        int left_height = maxHeight(node->esquerda);
-        int middle_height = maxHeight(node->centro);
-        int right_height = maxHeight(node->direita);
+        if(type == 0){
+            (node->contador)->buscaNivel++;
+        }else if(type == 1){
+            (node->contador)->remove++;
+        } else if(type == 2){
+            (node->contador)->percorre++;
+        }
+        int left_height = maxHeight(p, node->esquerda, type);
+        int middle_height = maxHeight(p, node->centro, type);
+        int right_height = maxHeight(p, node->direita, type);
         // printf("%p node left %d\n", node, left_height);
         // printf("%p node middle %d\n", node, middle_height);
         // printf("%p node right %d\n", node, right_height);
@@ -142,10 +263,7 @@ int _internalInsereBalanceado(pArLis p, pLDSE* list, NoArLis* parent, NoArLis** 
 int _insereArLisBal(pArLis p, void *novo, int (* cmp)(void *p1, void *p2)){
 
     if( p->bufLista == NULL){
-        pLDSE tempList = malloc(sizeof(pLDSE));
-        if(tempList == NULL){
-            return false;
-        }
+        pLDSE tempList;
         int retLdse = criaLDSE(&tempList, sizeof(p->tamInfo));    
         if(retLdse == false) {
             return false;
@@ -163,8 +281,6 @@ int _insereArLisBal(pArLis p, void *novo, int (* cmp)(void *p1, void *p2)){
     if (cmp(novo, &space) == 0 ||  cmp(novo, &new_line) == 0) {
         ret = _internalInsereBalanceado(p, &p->bufLista, NULL, &p->raiz);
         p->bufLista = NULL;
-        // int currentHeight = maxHeight(p->raiz);
-        // printf("\nCurrent height %d\n", currentHeight);
     }
  
     return ret;
@@ -219,7 +335,7 @@ int execHeight(pArLis p, NoArLis* node, int compHeight, int height, void (* proc
 int _percursoArLisBal(pArLis pa, void (* processa)(void *p)){
 
     int ret = true;
-    int max_height = maxHeight(pa->raiz);
+    int max_height = maxHeight(pa, pa->raiz, 2);
     printf("\n");
     for(int i = 0;  i <= max_height ; i++){
         execHeight(pa, pa->raiz, 0, i, processa);
@@ -244,14 +360,15 @@ int percursoArLisBal(pArLis pa, void (* processa)(void *p)){
 int getHeightLevelNode(pArLis p, ppNoArLis node, char* word, int* height,  ppNoArLis* parent, ppNoArLis* child, int (* processa)(pLDSE p, char *palavra))
 {   
     
+    (p->contador)->remove++;
     if((*node) == NULL){
         (*child) = NULL;
         return false;
     }
-    (p->contador)->remove++;
     ((*node)->contador)->remove++;
     // printf("comparando palavra %s %d\n", word, processa((*node)->lista, word));
     (p->contador)->contagemLista++;
+
     if (processa((*node)->lista, word) == true) {
         (*height) = 0;
         (*child) = node;
@@ -293,12 +410,6 @@ int getHeightLevelNode(pArLis p, ppNoArLis node, char* word, int* height,  ppNoA
     }
 }
 
-int removeChildNode(ppNoArLis ppChild){
-    reiniciaLDSE((*ppChild)->lista);
-    free((*ppChild));
-    (*ppChild) = NULL;
-}
-
 int getRemovableWithNoChild(pArLis p, NoArLis* node, ppNoArLis* maxNode, int height, int* max_height)
 {
     if (node == NULL)
@@ -314,7 +425,7 @@ int getRemovableWithNoChild(pArLis p, NoArLis* node, ppNoArLis* maxNode, int hei
         // printf("%p node right %d\n", node, right_height);
         if (right_height >= middle_height && right_height >= left_height) {
             // printf(" no da direita elegido %d\n\n", height);
-            if(node->direita != NULL && height >= (*max_height) && emptyChildNode(&node->direita)){
+            if(node->direita != NULL && height >= (*max_height) && emptyChildNode(p, &node->direita)){
                 (*maxNode) = &node->direita;
                 (*max_height) = (right_height + 1);
             }
@@ -322,7 +433,7 @@ int getRemovableWithNoChild(pArLis p, NoArLis* node, ppNoArLis* maxNode, int hei
         }
         if (middle_height <= left_height && middle_height <= right_height) {
             // printf(" no da meio elegido %d\n\n", height);
-            if(node->centro != NULL && height >= (*max_height) && emptyChildNode(&node->centro)){
+            if(node->centro != NULL && height >= (*max_height) && emptyChildNode(p, &node->centro)){
                 (*maxNode) = &node->centro;
                 (*max_height) = (middle_height + 1);
             }
@@ -330,7 +441,7 @@ int getRemovableWithNoChild(pArLis p, NoArLis* node, ppNoArLis* maxNode, int hei
         }
 
         // printf(" no da esquerda elegido %d\n\n", height);
-        if (node->esquerda != NULL && height >= (*max_height) && emptyChildNode(&node->esquerda)){
+        if (node->esquerda != NULL && height >= (*max_height) && emptyChildNode(p, &node->esquerda)){
             (*maxNode) = &node->esquerda;
             (*max_height) = (left_height + 1);
         }
@@ -342,17 +453,18 @@ int removeRebalancearArvore(pArLis p, pNoArLis root, ppNoArLis remove_node, int 
     ppNoArLis ppmax_node = &max_node;
     int max = 0;
     // Busca o nó com mais alto nível sem filhos
-    int h = getRemovableWithNoChild(p,root, &ppmax_node, 0, &max);
+    int h = getRemovableWithNoChild(p, root, &ppmax_node, 0, &max);
     
+    p->contador->remove++;
     if((*ppmax_node) != NULL){
-        imprimeChar((*ppmax_node)->lista);
-        printf("\n\n");
-        imprimeChar((*remove_node)->lista);
-        printf("\n\n");
-    
+        (*ppmax_node)->contador->remove++;
         // Troca o nó de mais alto nível, com o nó que vai ser removido
-        reiniciaLDSE((*remove_node)->lista);
+        destroiLDSE(&(*remove_node)->lista);
+        destroiContadorArLis(&(*remove_node)->contador);
         (*remove_node)->lista = (*ppmax_node)->lista;
+        (*remove_node)->contador = (*ppmax_node)->contador;
+        // memcpy((*remove_node)->lista, (*ppmax_node)->lista, sizeof(pLDSE));
+        // memcpy((*remove_node)->contador, (*ppmax_node)->contador, sizeof(pLDSE));
         free((*ppmax_node));
         (*ppmax_node) = NULL;
         return true;
@@ -366,8 +478,9 @@ int _removeArLisBal(pArLis p, char* word, int max_height, NoArLis** root )
     int ret = false;
     if ((*root) == NULL)
     {
-        return true;
+        return false;
     }
+    
     pNoArLis pNo = NULL, pChild = NULL;
     ppNoArLis ppParent = &pNo;
     ppNoArLis ppChild = &pChild;
@@ -378,18 +491,18 @@ int _removeArLisBal(pArLis p, char* word, int max_height, NoArLis** root )
         return false;
     }
     // printf("Rmoving child %p %d %d\n\n", (*ppChild), height, max_height);
-    if(emptyChildNode(ppChild) == true && height == (max_height-1 )){
+    if(emptyChildNode(p, ppChild) == true && height == (max_height-1 )){
         // Está no último nivel e não tem filhos, apenas remove.
-        removeChildNode(ppChild);
-        return ret;
+        return destroiNo(ppChild);
     }
     return removeRebalancearArvore(p,(*root), ppChild, max_height);
    
     
 }
+
 int removeArLisBal(pArLis p, void *item){
     CounterArLis* contador = p->contador;
-    int max_height = maxHeight(p->raiz);
+    int max_height = maxHeight(p, p->raiz, 1);
     int currentRemoveCount = contador->remove;
     int ret = _removeArLisBal(p, item, max_height, &p->raiz);
     int idx = contador->indexRemove++;
@@ -401,9 +514,17 @@ int removeArLisBal(pArLis p, void *item){
     return ret;
 }
 
-
 int nivelArLis(pArLis p){
-    return maxHeight(p->raiz);
+    CounterArLis* contador = p->contador;
+    int currentNivelCount = contador->buscaNivel;
+    int ret = maxHeight(p, p->raiz, 0);
+    int idx = contador->indexBuscaNivel++;
+    if(idx >= contador->sizeArrayBuscaNivel ){
+        contador->sizeArrayBuscaNivel *= 2;
+        contador->arrayBuscaNivel = realloc( contador->arrayBuscaNivel, contador->sizeArrayBuscaNivel * sizeof(int));
+    }
+    contador->arrayBuscaNivel[idx] = contador->buscaNivel - currentNivelCount;
+    return ret;
 }
 
 /** extra **/
@@ -455,7 +576,8 @@ int imprimeContadorNo(pArLis pa, pNoArLis node, FILE* f){
     imprimeCharFilterFile(node->lista, 20, 10, f);
     fprintf(f," -> [%d]", (node->contador)->insere);
     fprintf(f,"  [%d]", (node->contador)->remove);
-    fprintf(f,"  [%d]\n", (node->contador)->percorre);
+    fprintf(f,"  [%d]", (node->contador)->percorre);
+    fprintf(f,"  [%d]\n", (node->contador)->buscaNivel);
     if(node->esquerda != NULL){
         imprimeContadorNo(pa, node->esquerda, f);
     }
@@ -471,7 +593,7 @@ int imprimeContadorNo(pArLis pa, pNoArLis node, FILE* f){
 int imprimePorTentativa(pArLis pa, FILE* f){
     fprintf(f,"\n###################################################\n\n");
     
-    fprintf(f,"Contagem de comparacoes por insercao por tentativa\n");
+    fprintf(f,"Contagem de comparacoes por execucao do metodo de insercao\n");
     CounterArLis* contador = pa->contador;
     int indexInsere = contador->indexInsere;
     fprintf(f,"Tentativa [x] -> [total] \n");
@@ -479,15 +601,15 @@ int imprimePorTentativa(pArLis pa, FILE* f){
         fprintf(f,"Tentativa  [%d] -> [%d]\n", i, contador->arrayInsere[i]);
     }
     fprintf(f,"\n\n");
-    fprintf(f,"Contagem de comparacoes por remocao por tentativa\n");
+    fprintf(f,"Contagem de comparacoes por execucao do metodo de remocao\n");
     int indexRemove = contador->indexRemove;
     fprintf(f,"Tentativa [x] -> [total]  \n");
-    for(int i; i< indexRemove; i++){
+    for(int i; i < indexRemove; i++){
         fprintf(f,"Tentativa  [%d] -> [%d]\n", i, contador->arrayRemove[i]);
     }
 
     fprintf(f,"\n\n");
-    fprintf(f,"Contagem de comparacoes por percurso por tentativa\n");
+    fprintf(f,"Contagem de comparacoes por por execucao do metodo de percorrer\n");
     int indexPercorre = contador->indexPercorre;
     fprintf(f,"Tentativa [x] -> [total]  \n");
     for(int i; i< indexPercorre; i++){
@@ -526,7 +648,7 @@ int imprimeContadorNoANoLista(pArLis pa, pNoArLis node, FILE* f){
     int contagem = 0, ret  =0;
     int tamanhoLista = contaElementos(node->lista);
     fprintf(f,"\n");
-    fprintf(f,"  Contagem nos nós por posicao da lista ");
+    fprintf(f,"  Contagem de comparacoes nos nós por posicao da lista ");
     imprimeCharFilterFile(node->lista, 20, 10, f);
     fprintf(f,": \n");
     for(int i =0; i < tamanhoLista; i++ ){
@@ -551,7 +673,7 @@ int imprimeContadorNoANoLista(pArLis pa, pNoArLis node, FILE* f){
 int imprimeContadorLista(pArLis pa, FILE* f){
     CounterArLis* contador = pa->contador;
     fprintf(f,"###################################################\n\n");
-    fprintf(f,"Tentativas na lista [nó] -> [total]  \n");
+    fprintf(f,"Comparacoes na lista [nó] -> [total]  \n");
     imprimeContadorNoLista(pa, pa->raiz,f);
     imprimeContadorNoANoLista(pa, pa->raiz, f);
     return true;
@@ -559,7 +681,7 @@ int imprimeContadorLista(pArLis pa, FILE* f){
 
 int imprimePorNo(pArLis pa, FILE* f){
     fprintf(f,"###################################################\n\n");
-    fprintf(f,"[Conteudo do no] -> [insercoes] [remocoes] [percurso]\n\n");   
+    fprintf(f,"[Comparacoes do nó] -> [insercoes] [remocoes] [percurso] [busca nivel]\n\n");   
     return imprimeContadorNo(pa, pa->raiz, f);
 }
 
@@ -571,6 +693,7 @@ int _imprimeRelatorio(pArLis pa, FILE* f){
     fprintf(f,"Numero de comparacoes para inserir arvore: %d\n", c->insere);
     fprintf(f,"Numero de comparacoes para remover arvore: %d\n", c->remove);
     fprintf(f,"Numero de comparacoes para percorrer arvore: %d\n", c->percorre);
+    fprintf(f,"Numero de comparacoes para buscar nivel da arvore: %d\n", c->buscaNivel);
     fprintf(f,"Numero de comparacoes por palavra na lista: %d\n", c->contagemLista);
     fprintf(f,"\n\n");
     imprimePorNo(pa, f);
