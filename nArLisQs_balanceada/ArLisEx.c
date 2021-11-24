@@ -115,7 +115,7 @@ int reiniciaArLisBal(pArLis p){
 int destroiArLisBal(ppArLis pp){
 	if( (*pp) == NULL)
 		return false;
-    
+    imprimeRelatorio((*pp));
     reiniciaArLisBal((*pp));
     destroiContadorArLis(&(*pp)->contador);
     destroiLDSE(&(*pp)->bufLista);
@@ -213,7 +213,7 @@ int maxHeight(pArLis p, NoArLis* node, int type)
     } else if(type == 2){
         p->contador->percorre++;
     }
-
+ 
     if (node == NULL)
         return 0;
     else {
@@ -230,6 +230,7 @@ int maxHeight(pArLis p, NoArLis* node, int type)
         // printf("%p node left %d\n", node, left_height);
         // printf("%p node middle %d\n", node, middle_height);
         // printf("%p node right %d\n", node, right_height);
+       
         if (left_height >= middle_height && left_height >= right_height) {
             return (left_height + 1);
         }
@@ -313,7 +314,7 @@ int execHeight(pArLis p, NoArLis* node, int compHeight, int height, void (* proc
         if(compHeight == height){
             processa(node->lista);
         }
-        //ignora os níveis superiores
+        // ignora os níveis superiores
         if(compHeight > height){
             return 0;
         }
@@ -337,7 +338,7 @@ int _percursoArLisBal(pArLis pa, void (* processa)(void *p)){
     int ret = true;
     int max_height = maxHeight(pa, pa->raiz, 2);
     printf("\n");
-    for(int i = 0;  i <= max_height ; i++){
+    for(int i = 0;  i < max_height ; i++){
         execHeight(pa, pa->raiz, 0, i, processa);
     }
     return true;

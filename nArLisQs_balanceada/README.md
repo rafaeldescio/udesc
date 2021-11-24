@@ -16,6 +16,10 @@ Distributed under the GNU General Public License v3.0. See [LICENSE](../LICENSE)
 
 ## Implementação
 
+Cria uma arvore balanceada inserindo os nós folhas, na sequencia: esquerda, centro, direita.
+A remocão ocorre apagando o nó caso esse esteja no último nível, ou substituindo o nó a ser removido por um nó do último nível, ou seja, substitui por um nó que não tem filhos.
+O método de percorrer visita todos os nós do nível mais baixo para o mais alto, imprimindo todos os nós de mesmo nível na sequencia da esquerda para direita.
+
 
 Métodos disponíveis:
 1. criaArLisBal - Criar uma nova ArLis.

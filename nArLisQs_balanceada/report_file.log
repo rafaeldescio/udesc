@@ -1,0 +1,1683 @@
+
+
+###################################################
+################# Relatorio ArLis #################
+###################################################
+
+Numero de comparacoes para inserir arvore: 29329
+Numero de comparacoes para remover arvore: 7813
+Numero de comparacoes para percorrer arvore: 1366
+Numero de comparacoes para buscar nivel da arvore: 0
+Numero de comparacoes por palavra na lista: 1234
+
+
+###################################################
+
+[Comparacoes do nó] -> [insercoes] [remocoes] [percurso] [busca nivel]
+
+[     Alguns       ] -> [139]  [20]  [7]  [0]
+[      anos        ] -> [138]  [20]  [7]  [0]
+[    Itabira.      ] -> [135]  [20]  [6]  [0]
+[   orgulhoso:     ] -> [126]  [22]  [5]  [0]
+[  comunicacao.    ] -> [99]  [22]  [4]  [0]
+[      ouro,       ] -> [18]  [20]  [3]  [0]
+[      tive        ] -> [17]  [20]  [3]  [0]
+[      gado,       ] -> [16]  [22]  [3]  [0]
+[                  ] -> [98]  [20]  [4]  [0]
+[      tive        ] -> [15]  [20]  [3]  [0]
+[    fazendas.     ] -> [14]  [20]  [3]  [0]
+[      Hoje        ] -> [13]  [22]  [3]  [0]
+[        A         ] -> [97]  [22]  [4]  [0]
+[       sou        ] -> [12]  [22]  [3]  [0]
+[   funcionario    ] -> [11]  [20]  [3]  [0]
+[    publico.      ] -> [10]  [22]  [3]  [0]
+[       de         ] -> [125]  [20]  [5]  [0]
+[     vontade      ] -> [96]  [19]  [4]  [0]
+[     Itabira      ] -> [9]  [19]  [3]  [0]
+[        e         ] -> [8]  [19]  [3]  [0]
+[     apenas       ] -> [7]  [21]  [3]  [0]
+[       de         ] -> [95]  [19]  [4]  [0]
+[       uma        ] -> [6]  [19]  [3]  [0]
+[   fotografia     ] -> [5]  [19]  [3]  [0]
+[       na         ] -> [4]  [21]  [3]  [0]
+[      amar,       ] -> [94]  [21]  [4]  [0]
+[     parede.      ] -> [3]  [21]  [3]  [0]
+[       Mas        ] -> [2]  [19]  [3]  [0]
+[      como        ] -> [1]  [21]  [3]  [0]
+[     ferro.       ] -> [124]  [20]  [5]  [0]
+[       que        ] -> [93]  [20]  [4]  [0]
+[      doi!        ] -> [0]  [20]  [3]  [0]
+[       me         ] -> [92]  [20]  [4]  [0]
+[    paralisa      ] -> [91]  [22]  [4]  [0]
+[ Principalmente   ] -> [134]  [20]  [6]  [0]
+[     Noventa      ] -> [123]  [20]  [5]  [0]
+[        o         ] -> [90]  [20]  [4]  [0]
+[    trabalho,     ] -> [89]  [20]  [4]  [0]
+[       vem        ] -> [88]  [22]  [4]  [0]
+[       por        ] -> [122]  [20]  [5]  [0]
+[       de         ] -> [87]  [20]  [4]  [0]
+[    Itabira,      ] -> [86]  [20]  [4]  [0]
+[       de         ] -> [85]  [22]  [4]  [0]
+[      cento       ] -> [121]  [22]  [5]  [0]
+[      suas        ] -> [84]  [22]  [4]  [0]
+[     noites       ] -> [83]  [20]  [4]  [0]
+[    brancas,      ] -> [82]  [22]  [4]  [0]
+[      nasci       ] -> [133]  [20]  [6]  [0]
+[       de         ] -> [120]  [20]  [5]  [0]
+[       sem        ] -> [81]  [19]  [4]  [0]
+[    mulheres      ] -> [80]  [19]  [4]  [0]
+[        e         ] -> [79]  [21]  [4]  [0]
+[      ferro       ] -> [119]  [20]  [5]  [0]
+[       sem        ] -> [78]  [20]  [4]  [0]
+[   horizontes.    ] -> [77]  [20]  [4]  [0]
+[                  ] -> [76]  [22]  [4]  [0]
+[       nas        ] -> [118]  [22]  [5]  [0]
+[        E         ] -> [75]  [22]  [4]  [0]
+[        o         ] -> [74]  [20]  [4]  [0]
+[     habito       ] -> [73]  [22]  [4]  [0]
+[      vivi        ] -> [137]  [20]  [7]  [0]
+[       em         ] -> [132]  [20]  [6]  [0]
+[    calcadas.     ] -> [117]  [20]  [5]  [0]
+[       de         ] -> [72]  [20]  [4]  [0]
+[     sofrer,      ] -> [71]  [20]  [4]  [0]
+[       que        ] -> [70]  [22]  [4]  [0]
+[     Oitenta      ] -> [116]  [20]  [5]  [0]
+[      tanto       ] -> [69]  [20]  [4]  [0]
+[       me         ] -> [68]  [20]  [4]  [0]
+[    diverte,      ] -> [67]  [22]  [4]  [0]
+[       por        ] -> [115]  [22]  [5]  [0]
+[        e         ] -> [66]  [22]  [4]  [0]
+[      doce        ] -> [65]  [20]  [4]  [0]
+[     herana       ] -> [64]  [22]  [4]  [0]
+[     Itabira      ] -> [131]  [20]  [6]  [0]
+[      cento       ] -> [114]  [20]  [5]  [0]
+[   itabirana.     ] -> [63]  [20]  [4]  [0]
+[                  ] -> [62]  [20]  [4]  [0]
+[       De         ] -> [61]  [22]  [4]  [0]
+[       de         ] -> [113]  [20]  [5]  [0]
+[     Itabira      ] -> [60]  [19]  [4]  [0]
+[     trouxe       ] -> [59]  [19]  [4]  [0]
+[     prendas      ] -> [58]  [21]  [4]  [0]
+[      ferro       ] -> [112]  [22]  [5]  [0]
+[    diversas      ] -> [57]  [22]  [4]  [0]
+[       que        ] -> [56]  [20]  [4]  [0]
+[       ora        ] -> [55]  [22]  [4]  [0]
+[       Por        ] -> [130]  [20]  [6]  [0]
+[       nas        ] -> [111]  [20]  [5]  [0]
+[       te         ] -> [54]  [20]  [4]  [0]
+[    ofereco:      ] -> [53]  [20]  [4]  [0]
+[      esta        ] -> [52]  [22]  [4]  [0]
+[     almas.       ] -> [110]  [20]  [5]  [0]
+[    baixa...      ] -> [21]  [24]  [4]  [0]
+[       de         ] -> [50]  [20]  [4]  [0]
+[     ferro,       ] -> [49]  [22]  [4]  [0]
+[        E         ] -> [109]  [22]  [5]  [0]
+[     futuro       ] -> [48]  [22]  [4]  [0]
+[       aco        ] -> [47]  [20]  [4]  [0]
+[       do         ] -> [46]  [22]  [4]  [0]
+[       em         ] -> [136]  [20]  [7]  [0]
+[      isso        ] -> [129]  [20]  [6]  [0]
+[      esse        ] -> [108]  [20]  [5]  [0]
+[     Brasil,      ] -> [45]  [20]  [4]  [0]
+[      este        ] -> [44]  [20]  [4]  [0]
+[       Sao        ] -> [43]  [22]  [4]  [0]
+[   alheamento     ] -> [107]  [20]  [5]  [0]
+[    Benedito      ] -> [42]  [20]  [4]  [0]
+[       do         ] -> [41]  [20]  [4]  [0]
+[      velho       ] -> [40]  [22]  [4]  [0]
+[       do         ] -> [106]  [22]  [5]  [0]
+[    santeiro      ] -> [39]  [22]  [4]  [0]
+[     Alfredo      ] -> [38]  [20]  [4]  [0]
+[     Duval;       ] -> [37]  [22]  [4]  [0]
+[       sou        ] -> [128]  [20]  [6]  [0]
+[       que        ] -> [105]  [20]  [5]  [0]
+[      este        ] -> [36]  [20]  [4]  [0]
+[      couro       ] -> [35]  [20]  [4]  [0]
+[       de         ] -> [34]  [22]  [4]  [0]
+[       na         ] -> [104]  [20]  [5]  [0]
+[      anta,       ] -> [33]  [20]  [4]  [0]
+[    estendido     ] -> [32]  [20]  [4]  [0]
+[       no         ] -> [31]  [22]  [4]  [0]
+[      vida        ] -> [103]  [22]  [5]  [0]
+[      sofa        ] -> [30]  [22]  [4]  [0]
+[       da         ] -> [29]  [20]  [4]  [0]
+[      sala        ] -> [28]  [22]  [4]  [0]
+[     triste,      ] -> [127]  [20]  [6]  [0]
+[        e         ] -> [102]  [20]  [5]  [0]
+[      Tive        ] -> [19]  [22]  [4]  [0]
+[    visitas;      ] -> [26]  [20]  [4]  [0]
+[      este        ] -> [25]  [22]  [4]  [0]
+[   porosidade     ] -> [101]  [20]  [5]  [0]
+[    orgulho,      ] -> [24]  [20]  [4]  [0]
+[      esta        ] -> [23]  [20]  [4]  [0]
+[     cabeca       ] -> [22]  [22]  [4]  [0]
+[        e         ] -> [100]  [22]  [5]  [0]
+[                  ] -> [20]  [20]  [4]  [0]
+
+
+
+###################################################
+
+Contagem de comparacoes por execucao do metodo de insercao
+Tentativa [x] -> [total] 
+Tentativa  [0] -> [4]
+Tentativa  [1] -> [7]
+Tentativa  [2] -> [10]
+Tentativa  [3] -> [13]
+Tentativa  [4] -> [16]
+Tentativa  [5] -> [19]
+Tentativa  [6] -> [22]
+Tentativa  [7] -> [25]
+Tentativa  [8] -> [28]
+Tentativa  [9] -> [31]
+Tentativa  [10] -> [34]
+Tentativa  [11] -> [37]
+Tentativa  [12] -> [40]
+Tentativa  [13] -> [43]
+Tentativa  [14] -> [46]
+Tentativa  [15] -> [49]
+Tentativa  [16] -> [52]
+Tentativa  [17] -> [55]
+Tentativa  [18] -> [58]
+Tentativa  [19] -> [61]
+Tentativa  [20] -> [64]
+Tentativa  [21] -> [67]
+Tentativa  [22] -> [70]
+Tentativa  [23] -> [73]
+Tentativa  [24] -> [76]
+Tentativa  [25] -> [79]
+Tentativa  [26] -> [82]
+Tentativa  [27] -> [85]
+Tentativa  [28] -> [88]
+Tentativa  [29] -> [91]
+Tentativa  [30] -> [94]
+Tentativa  [31] -> [97]
+Tentativa  [32] -> [100]
+Tentativa  [33] -> [103]
+Tentativa  [34] -> [106]
+Tentativa  [35] -> [109]
+Tentativa  [36] -> [112]
+Tentativa  [37] -> [115]
+Tentativa  [38] -> [118]
+Tentativa  [39] -> [121]
+Tentativa  [40] -> [124]
+Tentativa  [41] -> [127]
+Tentativa  [42] -> [130]
+Tentativa  [43] -> [133]
+Tentativa  [44] -> [136]
+Tentativa  [45] -> [139]
+Tentativa  [46] -> [142]
+Tentativa  [47] -> [145]
+Tentativa  [48] -> [148]
+Tentativa  [49] -> [151]
+Tentativa  [50] -> [154]
+Tentativa  [51] -> [157]
+Tentativa  [52] -> [160]
+Tentativa  [53] -> [163]
+Tentativa  [54] -> [166]
+Tentativa  [55] -> [169]
+Tentativa  [56] -> [172]
+Tentativa  [57] -> [175]
+Tentativa  [58] -> [178]
+Tentativa  [59] -> [181]
+Tentativa  [60] -> [184]
+Tentativa  [61] -> [187]
+Tentativa  [62] -> [190]
+Tentativa  [63] -> [193]
+Tentativa  [64] -> [196]
+Tentativa  [65] -> [199]
+Tentativa  [66] -> [202]
+Tentativa  [67] -> [205]
+Tentativa  [68] -> [208]
+Tentativa  [69] -> [211]
+Tentativa  [70] -> [214]
+Tentativa  [71] -> [217]
+Tentativa  [72] -> [220]
+Tentativa  [73] -> [223]
+Tentativa  [74] -> [226]
+Tentativa  [75] -> [229]
+Tentativa  [76] -> [232]
+Tentativa  [77] -> [235]
+Tentativa  [78] -> [238]
+Tentativa  [79] -> [241]
+Tentativa  [80] -> [244]
+Tentativa  [81] -> [247]
+Tentativa  [82] -> [250]
+Tentativa  [83] -> [253]
+Tentativa  [84] -> [256]
+Tentativa  [85] -> [259]
+Tentativa  [86] -> [262]
+Tentativa  [87] -> [265]
+Tentativa  [88] -> [268]
+Tentativa  [89] -> [271]
+Tentativa  [90] -> [274]
+Tentativa  [91] -> [277]
+Tentativa  [92] -> [280]
+Tentativa  [93] -> [283]
+Tentativa  [94] -> [286]
+Tentativa  [95] -> [289]
+Tentativa  [96] -> [292]
+Tentativa  [97] -> [295]
+Tentativa  [98] -> [298]
+Tentativa  [99] -> [301]
+Tentativa  [100] -> [304]
+Tentativa  [101] -> [307]
+Tentativa  [102] -> [310]
+Tentativa  [103] -> [313]
+Tentativa  [104] -> [316]
+Tentativa  [105] -> [319]
+Tentativa  [106] -> [322]
+Tentativa  [107] -> [325]
+Tentativa  [108] -> [328]
+Tentativa  [109] -> [331]
+Tentativa  [110] -> [334]
+Tentativa  [111] -> [337]
+Tentativa  [112] -> [340]
+Tentativa  [113] -> [343]
+Tentativa  [114] -> [346]
+Tentativa  [115] -> [349]
+Tentativa  [116] -> [352]
+Tentativa  [117] -> [355]
+Tentativa  [118] -> [358]
+Tentativa  [119] -> [361]
+Tentativa  [120] -> [364]
+Tentativa  [121] -> [367]
+Tentativa  [122] -> [370]
+Tentativa  [123] -> [373]
+Tentativa  [124] -> [376]
+Tentativa  [125] -> [379]
+Tentativa  [126] -> [382]
+Tentativa  [127] -> [385]
+Tentativa  [128] -> [388]
+Tentativa  [129] -> [391]
+Tentativa  [130] -> [394]
+Tentativa  [131] -> [397]
+Tentativa  [132] -> [400]
+Tentativa  [133] -> [403]
+Tentativa  [134] -> [406]
+Tentativa  [135] -> [409]
+Tentativa  [136] -> [412]
+Tentativa  [137] -> [415]
+Tentativa  [138] -> [418]
+
+
+Contagem de comparacoes por execucao do metodo de remocao
+Tentativa [x] -> [total]  
+Tentativa  [0] -> [524]
+Tentativa  [1] -> [418]
+Tentativa  [2] -> [418]
+Tentativa  [3] -> [418]
+Tentativa  [4] -> [418]
+Tentativa  [5] -> [418]
+Tentativa  [6] -> [418]
+Tentativa  [7] -> [418]
+Tentativa  [8] -> [598]
+
+
+Contagem de comparacoes por por execucao do metodo de percorrer
+Tentativa [x] -> [total]  
+Tentativa  [0] -> [1366]
+
+
+###################################################
+
+Comparacoes na lista [nó] -> [total]  
+
+[     Alguns       ] -> [15]
+
+[      anos        ] -> [15]
+
+[    Itabira.      ] -> [15]
+
+[   orgulhoso:     ] -> [15]
+
+[  comunicacao.    ] -> [15]
+
+[      ouro,       ] -> [15]
+
+[      tive        ] -> [15]
+
+[      gado,       ] -> [15]
+
+[                  ] -> [15]
+
+[      tive        ] -> [15]
+
+[    fazendas.     ] -> [15]
+
+[      Hoje        ] -> [15]
+
+[        A         ] -> [15]
+
+[       sou        ] -> [15]
+
+[   funcionario    ] -> [15]
+
+[    publico.      ] -> [15]
+
+[       de         ] -> [15]
+
+[     vontade      ] -> [14]
+
+[     Itabira      ] -> [14]
+
+[        e         ] -> [14]
+
+[     apenas       ] -> [14]
+
+[       de         ] -> [14]
+
+[       uma        ] -> [14]
+
+[   fotografia     ] -> [14]
+
+[       na         ] -> [14]
+
+[      amar,       ] -> [14]
+
+[     parede.      ] -> [14]
+
+[       Mas        ] -> [14]
+
+[      como        ] -> [14]
+
+[     ferro.       ] -> [15]
+
+[       que        ] -> [15]
+
+[      doi!        ] -> [15]
+
+[       me         ] -> [15]
+
+[    paralisa      ] -> [15]
+
+[ Principalmente   ] -> [15]
+
+[     Noventa      ] -> [15]
+
+[        o         ] -> [15]
+
+[    trabalho,     ] -> [15]
+
+[       vem        ] -> [15]
+
+[       por        ] -> [15]
+
+[       de         ] -> [15]
+
+[    Itabira,      ] -> [15]
+
+[       de         ] -> [15]
+
+[      cento       ] -> [15]
+
+[      suas        ] -> [15]
+
+[     noites       ] -> [15]
+
+[    brancas,      ] -> [15]
+
+[      nasci       ] -> [15]
+
+[       de         ] -> [15]
+
+[       sem        ] -> [14]
+
+[    mulheres      ] -> [14]
+
+[        e         ] -> [14]
+
+[      ferro       ] -> [15]
+
+[       sem        ] -> [15]
+
+[   horizontes.    ] -> [15]
+
+[                  ] -> [15]
+
+[       nas        ] -> [15]
+
+[        E         ] -> [15]
+
+[        o         ] -> [15]
+
+[     habito       ] -> [15]
+
+[      vivi        ] -> [15]
+
+[       em         ] -> [15]
+
+[    calcadas.     ] -> [15]
+
+[       de         ] -> [15]
+
+[     sofrer,      ] -> [15]
+
+[       que        ] -> [15]
+
+[     Oitenta      ] -> [15]
+
+[      tanto       ] -> [15]
+
+[       me         ] -> [15]
+
+[    diverte,      ] -> [15]
+
+[       por        ] -> [15]
+
+[        e         ] -> [15]
+
+[      doce        ] -> [15]
+
+[     herana       ] -> [15]
+
+[     Itabira      ] -> [15]
+
+[      cento       ] -> [15]
+
+[   itabirana.     ] -> [15]
+
+[                  ] -> [15]
+
+[       De         ] -> [15]
+
+[       de         ] -> [15]
+
+[     Itabira      ] -> [14]
+
+[     trouxe       ] -> [14]
+
+[     prendas      ] -> [14]
+
+[      ferro       ] -> [15]
+
+[    diversas      ] -> [15]
+
+[       que        ] -> [15]
+
+[       ora        ] -> [15]
+
+[       Por        ] -> [15]
+
+[       nas        ] -> [15]
+
+[       te         ] -> [15]
+
+[    ofereco:      ] -> [15]
+
+[      esta        ] -> [15]
+
+[     almas.       ] -> [15]
+
+[    baixa...      ] -> [15]
+
+[       de         ] -> [15]
+
+[     ferro,       ] -> [15]
+
+[        E         ] -> [15]
+
+[     futuro       ] -> [15]
+
+[       aco        ] -> [15]
+
+[       do         ] -> [15]
+
+[       em         ] -> [15]
+
+[      isso        ] -> [15]
+
+[      esse        ] -> [15]
+
+[     Brasil,      ] -> [15]
+
+[      este        ] -> [15]
+
+[       Sao        ] -> [15]
+
+[   alheamento     ] -> [15]
+
+[    Benedito      ] -> [15]
+
+[       do         ] -> [15]
+
+[      velho       ] -> [15]
+
+[       do         ] -> [15]
+
+[    santeiro      ] -> [15]
+
+[     Alfredo      ] -> [15]
+
+[     Duval;       ] -> [15]
+
+[       sou        ] -> [15]
+
+[       que        ] -> [15]
+
+[      este        ] -> [15]
+
+[      couro       ] -> [15]
+
+[       de         ] -> [15]
+
+[       na         ] -> [15]
+
+[      anta,       ] -> [15]
+
+[    estendido     ] -> [15]
+
+[       no         ] -> [15]
+
+[      vida        ] -> [15]
+
+[      sofa        ] -> [15]
+
+[       da         ] -> [15]
+
+[      sala        ] -> [15]
+
+[     triste,      ] -> [15]
+
+[        e         ] -> [15]
+
+[      Tive        ] -> [15]
+
+[    visitas;      ] -> [15]
+
+[      este        ] -> [15]
+
+[   porosidade     ] -> [15]
+
+[    orgulho,      ] -> [15]
+
+[      esta        ] -> [15]
+
+[     cabeca       ] -> [15]
+
+[        e         ] -> [15]
+
+[                  ] -> [15]
+
+  Contagem de comparacoes nos nós por posicao da lista [     Alguns       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      anos        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    Itabira.      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [   orgulhoso:     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [  comunicacao.    ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+     [11] -> [15]
+     [12] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      ouro,       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      tive        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      gado,       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [                  ]: 
+
+     [0] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      tive        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    fazendas.     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      Hoje        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        A         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       sou        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [   funcionario    ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+     [11] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    publico.      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     vontade      ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+     [7] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [     Itabira      ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+     [7] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [        e         ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [     apenas       ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [       uma        ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [   fotografia     ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+     [7] -> [14]
+     [8] -> [14]
+     [9] -> [14]
+     [10] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [       na         ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [      amar,       ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [     parede.      ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+     [7] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [       Mas        ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [      como        ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [     ferro.       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       que        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      doi!        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       me         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    paralisa      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [ Principalmente   ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+     [11] -> [15]
+     [12] -> [15]
+     [13] -> [15]
+     [14] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     Noventa      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        o         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    trabalho,     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       vem        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       por        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    Itabira,      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      cento       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      suas        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     noites       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    brancas,      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      nasci       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       sem        ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [    mulheres      ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+     [7] -> [14]
+     [8] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [        e         ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [      ferro       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       sem        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [   horizontes.    ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+     [11] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [                  ]: 
+
+     [0] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       nas        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        E         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        o         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     habito       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      vivi        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       em         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    calcadas.     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     sofrer,      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       que        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     Oitenta      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      tanto       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       me         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    diverte,      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       por        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        e         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      doce        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     herana       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     Itabira      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      cento       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [   itabirana.     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [                  ]: 
+
+     [0] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       De         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     Itabira      ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+     [7] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [     trouxe       ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [     prendas      ]: 
+
+     [0] -> [14]
+     [1] -> [14]
+     [2] -> [14]
+     [3] -> [14]
+     [4] -> [14]
+     [5] -> [14]
+     [6] -> [14]
+     [7] -> [14]
+  Contagem de comparacoes nos nós por posicao da lista [      ferro       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    diversas      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       que        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       ora        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       Por        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       nas        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       te         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    ofereco:      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      esta        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     almas.       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    baixa...      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     ferro,       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        E         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     futuro       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       aco        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       do         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       em         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      isso        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      esse        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     Brasil,      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      este        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       Sao        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [   alheamento     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    Benedito      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       do         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      velho       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       do         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    santeiro      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     Alfredo      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     Duval;       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       sou        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       que        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      este        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      couro       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       de         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       na         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      anta,       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    estendido     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       no         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      vida        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      sofa        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [       da         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      sala        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     triste,      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        e         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      Tive        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    visitas;      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      este        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [   porosidade     ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+     [9] -> [15]
+     [10] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [    orgulho,      ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+     [7] -> [15]
+     [8] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [      esta        ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [     cabeca       ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+     [2] -> [15]
+     [3] -> [15]
+     [4] -> [15]
+     [5] -> [15]
+     [6] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [        e         ]: 
+
+     [0] -> [15]
+     [1] -> [15]
+  Contagem de comparacoes nos nós por posicao da lista [                  ]: 
+
+     [0] -> [15]
+
+
+
+#######################################################
+################# Imprimindo a Arvore #################
+#######################################################
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                [   Alguns     ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                [    anos      ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                [    vivi      ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                [     em       ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                [  Itabira.    ]                                                                                                                                                                                                                                                                                                                                                                                                                                [Principalmente ]                                                                                                                                                                                                                                                                                                                                                                                                                                [    nasci     ]                                                                                                                                                                                                                                                                                                                                                                                                                                [     em       ]                                                                                                                                                                                                                                                                                                                                                                                                                                [   Itabira    ]                                                                                                                                                                                                                                                                                                                                                                                                                                [     Por      ]                                                                                                                                                                                                                                                                                                                                                                                                                                [    isso      ]                                                                                                                                                                                                                                                                                                                                                                                                                                [     sou      ]                                                                                                                                                                                                                                                                                                                                                                                                                                [   triste,    ]                                                                                                                                                                                                                
+                                                                [ orgulhoso:   ]                                                                                                                                [     de       ]                                                                                                                                [   ferro.     ]                                                                                                                                [   Noventa    ]                                                                                                                                [     por      ]                                                                                                                                [    cento     ]                                                                                                                                [     de       ]                                                                                                                                [    ferro     ]                                                                                                                                [     nas      ]                                                                                                                                [  calcadas.   ]                                                                                                                                [   Oitenta    ]                                                                                                                                [     por      ]                                                                                                                                [    cento     ]                                                                                                                                [     de       ]                                                                                                                                [    ferro     ]                                                                                                                                [     nas      ]                                                                                                                                [   almas.     ]                                                                                                                                [      E       ]                                                                                                                                [    esse      ]                                                                                                                                [ alheamento   ]                                                                                                                                [     do       ]                                                                                                                                [     que      ]                                                                                                                                [     na       ]                                                                                                                                [    vida      ]                                                                                                                                [      e       ]                                                                                                                                [ porosidade   ]                                                                                                                                [      e       ]                                                                
+                [comunicacao.  ]                                [              ]                                [      A       ]                                [   vontade    ]                                [     de       ]                                [    amar,     ]                                [     que      ]                                [     me       ]                                [  paralisa    ]                                [      o       ]                                [  trabalho,   ]                                [     vem      ]                                [     de       ]                                [  Itabira,    ]                                [     de       ]                                [    suas      ]                                [   noites     ]                                [  brancas,    ]                                [     sem      ]                                [  mulheres    ]                                [      e       ]                                [     sem      ]                                [ horizontes.  ]                                [              ]                                [      E       ]                                [      o       ]                                [   habito     ]                                [     de       ]                                [   sofrer,    ]                                [     que      ]                                [    tanto     ]                                [     me       ]                                [  diverte,    ]                                [      e       ]                                [    doce      ]                                [   herana     ]                                [ itabirana.   ]                                [              ]                                [     De       ]                                [   Itabira    ]                                [   trouxe     ]                                [   prendas    ]                                [  diversas    ]                                [     que      ]                                [     ora      ]                                [     te       ]                                [  ofereco:    ]                                [    esta      ]                                [  baixa...    ]                                [     de       ]                                [   ferro,     ]                                [   futuro     ]                                [     aco      ]                                [     do       ]                                [   Brasil,    ]                                [    este      ]                                [     Sao      ]                                [  Benedito    ]                                [     do       ]                                [    velho     ]                                [  santeiro    ]                                [   Alfredo    ]                                [   Duval;     ]                                [    este      ]                                [    couro     ]                                [     de       ]                                [    anta,     ]                                [  estendido   ]                                [     no       ]                                [    sofa      ]                                [     da       ]                                [    sala      ]                                [    Tive      ]                                [  visitas;    ]                                [    este      ]                                [  orgulho,    ]                                [    esta      ]                                [   cabeca     ]                                [              ]                
+[    ouro,     ][    tive      ][    gado,     ][    tive      ][  fazendas.   ][    Hoje      ][     sou      ][ funcionario  ][  publico.    ][   Itabira    ][      e       ][   apenas     ][     uma      ][ fotografia   ][     na       ][   parede.    ][     Mas      ][    como      ][    doi!      ]

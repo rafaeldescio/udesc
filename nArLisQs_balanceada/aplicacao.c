@@ -51,14 +51,13 @@ void inputData (pArLis ptr, char **argv) {
 
   bufrb = malloc(sizeof(char));
   while (bufrb!=NULL) {
-    if (!fread(bufrb,sizeof(char),1,ptrfile)) {
+    if (!fread(bufrb,1,sizeof(char),ptrfile)) {
       // printf("ERRO: fread (%d)\n", valor);
       // if((insereArLis(ptr, &valor, comparaDados))){
       //    total++;
       // }
       bufrb=NULL;
     } else {
-      // printf("Buffer %.25s\n", bufrb);
       //int letra = (int)bufrb[0];
       //printf("{%c,%d}", bufrb[0], bufrb[0]);
       switch (cont) {
@@ -234,8 +233,6 @@ int main(int argc, char **argv){
 
   printf("\nImpressao ArLis (traduzida): ");
   percursoArLisBal(ptr, imprime);
-  nivelArLis(ptr);
-  imprimeRelatorio(ptr);
   printf("\n");
 
   destroiArLisBal(&ptr);
